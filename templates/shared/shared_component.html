@@ -1,0 +1,28 @@
+<div class="property-item">
+    <div class="pi-pic set-bg" data-setbg="{{ item.image.url }}">
+        <div class="label">For {{ item.status }}</div>
+    </div>
+    <div class="pi-text">
+        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+        <div class="pt-price">$ 289.0<span>/month</span></div>
+        <h5><a href="#">Home in Merrick Way</a></h5>
+        <p><span class="icon_pin_alt"></span> {{ item.address }}</p>
+        <ul>
+            <li><i class="fa fa-object-group"></i> {{ item.size }}</li>
+            <li><i class="fa fa-bathtub"></i> {{ item.floor }}</li>
+            <li><i class="fa fa-bed"></i> {{ item.bedroom }}</li>
+            <li><i class="fa fa-automobile"></i> {{ item.garage }}</li>
+        </ul>
+        <div class="pi-agent">
+            <div class="pa-item">
+                <div class="pa-info">
+                    <img src="{{ item.image.url }}" alt="">
+                    <h6>{{ item.user.first_name }} {{ item.user.last_name }}</h6>
+                </div>
+                <div class="pa-text">
+                    123-455-688
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

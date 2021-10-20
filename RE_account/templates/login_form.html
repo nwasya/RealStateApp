@@ -1,0 +1,58 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+{% load render_partial %}
+{% block content %}
+
+
+
+
+        <!-- Contact Form Section Begin -->
+    <section class="contact-form-section spad">
+        <div class="container">
+            {% if login_form.user_name.errors %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{ login_form.user_name.errors }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+
+            {% if login_form.password.errors %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{ login_form.password.errors }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="cf-content">
+                        <div class="cc-title">
+                            <h4>ورود به سیستم</h4>
+
+                        </div>
+                        <form method="POST" class="cc-form">
+                    {% csrf_token %}
+                            <div class="col-md-12 col-sm-12 col-lg-12 text-center">
+                                <div class=" row text-center group-input">
+                                <input name="user_name" class="text-center"  style="width: 100%" type="text" placeholder="نام کاربری">
+                            </div>
+                            <div  class="row text-center group-input">
+                                <input name="password" class="text-center"  style="width: 100%" type="password" placeholder="رمز  عبور">
+                            </div>
+
+                            <button type="submit" class="site-btn">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Form Section End -->
+
+
+
+{% endblock %}

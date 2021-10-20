@@ -1,0 +1,82 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+{% load render_partial %}
+{% block content %}
+
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h4>Property Grid</h4>
+                        <div class="bt-option">
+                            <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                            <span>Property</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Property Section Begin -->
+    <section class="property-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title" style="float: right !important;">
+                        <h4>نتایج جستجو</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                {% for item in items %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="property-item">
+                            <div class="pi-pic set-bg" data-setbg="{{ item.image.url }}">
+                                <div class="label">For {{ item.status }}</div>
+                            </div>
+                            <div class="pi-text">
+                                <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                                <div class="pt-price">تومان {{ item.price }}<span>ماهانه</span></div>
+                                <h5><a href="#">{{ item.city}}</a></h5>
+                                <p><span class="icon_pin_alt"></span>{{ item.address }}</p>
+                                <ul>
+                                    <li><i class="fa fa-object-group"></i> {{ item.size }}</li>
+                                    <li><i class="fa fa-bathtub"></i> {{ item.floor }}</li>
+                                    <li><i class="fa fa-bed"></i> {{ item.bedroom }}</li>
+                                    <li><i class="fa fa-automobile"></i> {{ item.garage }}</li>
+                                </ul>
+                                <div class="pi-agent">
+                                    <div class="pa-item">
+                                        <div class="pa-info">
+                                            <img src="{% static 'img/property/posted-by/pb-1.jpg' %}" alt="">
+                                            <h6>{{ item.user.first_name}} {{ item.user.last_name }}</h6>
+                                        </div>
+                                        <div class="pa-text">
+                                            123-455-688
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+                <div class="col-lg-12">
+                    <div class="loadmore-btn">
+                        <a href="#">Load more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Property Section End -->
+
+
+{% endblock %}

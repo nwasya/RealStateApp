@@ -1,0 +1,29 @@
+{% load static %}
+{% load render_partial %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Aler Template">
+    <meta name="keywords" content="Aler, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aler | Template</title>
+
+    <!-- Google Font -->
+    {% include 'shared/_HeaderReferences.html' %}
+
+
+</head>
+
+<body>
+
+{% render_partial 'header' %}
+
+{% block content %}{% endblock %}
+{% render_partial 'footer' %}
+{% include 'shared/_FooterReferences.html' %}
+{% block footer_ref %}{% endblock %}
+</body>
+</html>

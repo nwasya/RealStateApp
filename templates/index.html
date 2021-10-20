@@ -1,0 +1,495 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Hero Section Begin -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hs-slider owl-carousel">
+
+                {% for item in slider %}
+                    <div class="hs-item set-bg" data-setbg="{{ item.image.url }}">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="hc-inner-text">
+                                    <div class="hc-text">
+                                        <h4>{{ item.city }}</h4>
+                                        <p><span class="icon_pin_alt"></span>{{ item.area }}</p>
+                                        <div class="label">برای {{ item.status }}</div>
+                                        <h5>تومان {{ item.price }}<span>/هر ماه</span></h5>
+                                    </div>
+                                    <div class="hc-widget">
+                                        <ul>
+                                            <li><i class="fa fa-object-group"></i> {{ item.size }}</li>
+                                            <li><i class="fa fa-bathtub"></i> {{ item.floor }}</li>
+                                            <li><i class="fa fa-bed"></i> {{ item.bedroom }}</li>
+                                            <li><i class="fa fa-automobile"></i> {{ item.garage }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+
+
+    <!-- Property Section Begin -->
+    <section class="property-section latest-property-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-8">
+                    <div class="property-controls">
+                        <ul>
+                            <li data-filter="all">همه</li>
+                            <li data-filter=".house">خانه</li>
+                            <li data-filter=".apart">آپارتمان</li>
+                            <li data-filter=".villa">ویلا</li>
+                            <li data-filter=".garden">باغ</li>
+                            <li data-filter=".store">مغازه</li>
+                            <li data-filter=".restaurant">رستوران</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-4 text-sm-center ">
+                    <div class="section-title" style="text-align: right">
+                        <h4 style="font-family: 'yekan'">ملک های اخیر</h4>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row property-filter">
+
+
+                {% for item in house %}
+                    <div class="col-lg-4 col-md-6  mix house">
+                        {% include 'shared/shared_component.html' with item=item %}
+                    </div>
+                {% endfor %}
+                {% for item in apartment %}
+                    <div class="col-lg-4 col-md-6  mix apart">
+                        {% include 'shared/shared_component.html' with item=item %}
+                    </div>
+                {% endfor %}
+                {% for item in villa %}
+                    <div class="col-lg-4 col-md-6  mix villa">
+                        {% include 'shared/shared_component.html' with item=item %}
+                    </div>
+                {% endfor %}
+                {% for item in garden %}
+                    <div class="col-lg-4 col-md-6  mix garden">
+                        {% include 'shared/shared_component.html' with item=item %}
+                    </div>
+                {% endfor %}
+                {% for item in store %}
+                    <div class="col-lg-4 col-md-6  mix store">
+                        {% include 'shared/shared_component.html' with item=item %}
+                    </div>
+                {% endfor %}
+                {% for item in restaurant %}
+                    <div class="col-lg-4 col-md-6  mix restaurant">
+                        {% include 'shared/shared_component.html' with item=item %}
+                    </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+
+    </section>
+    <!-- Property Section End -->
+
+    <!-- Chooseus Section Begin -->
+    <section class="chooseus-section spad set-bg" data-setbg="{% static 'img/chooseus/chooseus-bg.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="chooseus-text">
+                        <div class="section-title">
+                            <h4>Why choose us</h4>
+                        </div>
+                        <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown
+                            printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    </div>
+                    <div class="chooseus-features">
+                        <div class="cf-item">
+                            <div class="cf-pic">
+                                <img src="{% static 'img/chooseus/chooseus-icon-1.png' %}" alt="">
+                            </div>
+                            <div class="cf-text">
+                                <h5>Find your future home</h5>
+                                <p>We help you find a new home by offering a smart real estate.</p>
+                            </div>
+                        </div>
+                        <div class="cf-item">
+                            <div class="cf-pic">
+                                <img src="{% static 'img/chooseus/chooseus-icon-2.png' %}" alt="">
+                            </div>
+                            <div class="cf-text">
+                                <h5>Buy or rent homes</h5>
+                                <p>Millions of houses and apartments in your favourite cities</p>
+                            </div>
+                        </div>
+                        <div class="cf-item">
+                            <div class="cf-pic">
+                                <img src="{% static 'img/chooseus/chooseus-icon-3.png' %}" alt="">
+                            </div>
+                            <div class="cf-text">
+                                <h5>Experienced agents</h5>
+                                <p>Find an agent who knows your market best</p>
+                            </div>
+                        </div>
+                        <div class="cf-item">
+                            <div class="cf-pic">
+                                <img src="{% static 'img/chooseus/chooseus-icon-4.png' %}" alt="">
+                            </div>
+                            <div class="cf-text">
+                                <h5>List your own property</h5>
+                                <p>Sign up now and sell or rent your own properties</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Chooseus Section End -->
+
+    <!-- Feature Property Section Begin -->
+    <section class="feature-property-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 p-0">
+                    <div class="feature-property-left">
+                        <div class="section-title">
+                            <h4>خبر های اخیر</h4>
+                        </div>
+                        <ul>
+                            <li>آپارتمان</li>
+                            <li>خانه</li>
+                            <li>مغازه</li>
+                            <li>باغ</li>
+                            <li>ویلا</li>
+                            <li>رستوران</li>
+                        </ul>
+                        <a href="#">مشاهده تمامی اخبار</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 p-0">
+                    <div class="fp-slider owl-carousel">
+                        {% for item in featured %}
+                            <div class="fp-item set-bg" data-setbg="{{ item.image.url }}">
+                                <div class="fp-text">
+                                    <h5 class="title">{{ item.title }}</h5>
+                                    <p><span class="icon_pin_alt"></span> {{ item.area }}</p>
+                                    <div class="label">برای {{ item.status }}</div>
+                                    <h5>تومان {{ item.price }}ماهانه </h5>
+                                    <ul>
+                                        <li><i class="fa fa-object-group"></i> {{ item.size }}</li>
+                                        <li><i class="fa fa-bathtub"></i> {{ item.floor }}</li>
+                                        <li><i class="fa fa-bed"></i> {{ item.bedroom }}</li>
+                                        <li><i class="fa fa-automobile"></i> {{ item.garage }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Feature Property Section End -->
+
+    <!-- Team Section Begin -->
+    <section class="team-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="team-btn">
+                        <a href="#" class="" style="font-family: yekan"><i class="fa fa-user"></i> مشاهده تمامی مشاورین</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8">
+                    <div class="section-title">
+                        <h4>مشاورین املاک رستم زاده</h4>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="ts-item">
+                        <div class="ts-text">
+                            <img src="{% static 'img/team/team-1.jpg' %}" alt="">
+                            <h5>Ashton Kutcher</h5>
+                            <span>123-455-688</span>
+                            <p>Ipsum dolor amet, consectetur adipiscing elit, eiusmod tempor incididunt lorem.</p>
+                            <div class="ts-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-envelope-o"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="ts-item">
+                        <div class="ts-text">
+                            <img src="{% static 'img/team/team-2.jpg' %}" alt="">
+                            <h5>Ashton Kutcher</h5>
+                            <span>123-455-688</span>
+                            <p>Ipsum dolor amet, consectetur adipiscing elit, eiusmod tempor incididunt lorem.</p>
+                            <div class="ts-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-envelope-o"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="ts-item">
+                        <div class="ts-text">
+                            <img src="{% static 'img/team/team-3.jpg' %}" alt="">
+                            <h5>Ashton Kutcher</h5>
+                            <span>123-455-688</span>
+                            <p>Ipsum dolor amet, consectetur adipiscing elit, eiusmod tempor incididunt lorem.</p>
+                            <div class="ts-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-envelope-o"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Team Section End -->
+
+    <!-- Categories Section Begin -->
+    <section class="categories-section">
+        <div class="cs-item-list">
+            <div class="cs-item set-bg" data-setbg="{% static 'img/categories/cat-1.jpg' %}">
+                <div class="cs-text">
+                    <h5>آپارتمان</h5>
+                    <span>{{ apartment_count }}عدد</span>
+                </div>
+            </div>
+            <div class="cs-item set-bg" data-setbg="{% static 'img/categories/cat-2.jpg' %}">
+                <div class="cs-text">
+                    <h5>ویلا</h5>
+                    <span>{{ villa_count }}عدد</span>
+                </div>
+            </div>
+            <div class="cs-item set-bg" data-setbg="{% static 'img/categories/cat-3.jpg' %}">
+                <div class="cs-text">
+                    <h5>خانه</h5>
+                    <span>{{ house_count }}عدد</span>
+                </div>
+            </div>
+            <div class="cs-item set-bg" data-setbg="{% static 'img/categories/cat-4.jpg' %}">
+                <div class="cs-text">
+                    <h5>رستوران</h5>
+                    <span>{{ restaurant_count }}عدد</span>
+                </div>
+            </div>
+            <div class="cs-item set-bg" data-setbg="{% static 'img/categories/cat-5.jpg' %}">
+                <div class="cs-text">
+                    <h5>مغازه</h5>
+                    <span>{{ store_count }}عدد</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Categories Section End -->
+
+    <!-- Testimonial Section Begin -->
+    <section class="testimonial-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h4>نظرات اخیر کاربران املاک رستم زاده</h4>
+                    </div>
+                </div>
+                <div class="row testimonial-slider owl-carousel">
+                <div class="col-lg-6">
+                    <div class="testimonial-item">
+                        <div class="ti-text">
+                            <p>Lorem ipsum dolor amet, consectetur adipiscing elit, seiusmod tempor incididunt ut labore
+                                magna aliqua. Quis ipsum suspendisse ultrices gravida accumsan lacus vel facilisis.</p>
+                        </div>
+                        <div class="ti-author">
+                            <div class="ta-pic">
+                                <img src="{% static 'img/testimonial-author/ta-1.jpg' %}" alt="">
+                            </div>
+                            <div class="ta-text">
+                                <h5>Arise Naieh</h5>
+                                <span>Designer</span>
+                                <div class="ta-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="testimonial-item">
+                        <div class="ti-text">
+                            <p>Lorem ipsum dolor amet, consectetur adipiscing elit, seiusmod tempor incididunt ut labore
+                                magna aliqua. Quis ipsum suspendisse ultrices gravida accumsan lacus vel facilisis.</p>
+                        </div>
+                        <div class="ti-author">
+                            <div class="ta-pic">
+                                <img src="{% static 'img/testimonial-author/ta-2.jpg' %}" alt="">
+                            </div>
+                            <div class="ta-text">
+                                <h5>Arise Naieh</h5>
+                                <span>Designer</span>
+                                <div class="ta-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="testimonial-item">
+                        <div class="ti-text">
+                            <p>Lorem ipsum dolor amet, consectetur adipiscing elit, seiusmod tempor incididunt ut labore
+                                magna aliqua. Quis ipsum suspendisse ultrices gravida accumsan lacus vel facilisis.</p>
+                        </div>
+                        <div class="ti-author">
+                            <div class="ta-pic">
+                                <img src="{% static 'img/testimonial-author/ta-1.jpg' %}" alt="">
+                            </div>
+                            <div class="ta-text">
+                                <h5>Arise Naieh</h5>
+                                <span>Designer</span>
+                                <div class="ta-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- Testimonial Section End -->
+
+    <!-- Logo Carousel Begin -->
+{#    <div class="logo-carousel">#}
+{#        <div class="container">#}
+{#            <div class="lc-slider owl-carousel">#}
+{#                <a href="#" class="lc-item">#}
+{#                    <div class="lc-item-inner">#}
+{#                        <img src="{% static 'img/logo-carousel/lc-1.png' %}" alt="">#}
+{#                    </div>#}
+{#                </a>#}
+{#                <a href="#" class="lc-item">#}
+{#                    <div class="lc-item-inner">#}
+{#                        <img src="{% static 'img/logo-carousel/lc-2.png' %}" alt="">#}
+{#                    </div>#}
+{#                </a>#}
+{#                <a href="#" class="lc-item">#}
+{#                    <div class="lc-item-inner">#}
+{#                        <img src="{% static 'img/logo-carousel/lc-3.png' %}" alt="">#}
+{#                    </div>#}
+{#                </a>#}
+{#                <a href="#" class="lc-item">#}
+{#                    <div class="lc-item-inner">#}
+{#                        <img src="{% static 'img/logo-carousel/lc-4.png' %}" alt="">#}
+{#                    </div>#}
+{#                </a>#}
+{#                <a href="#" class="lc-item">#}
+{#                    <div class="lc-item-inner">#}
+{#                        <img src="{% static 'img/logo-carousel/lc-5.png' %}" alt="">#}
+{#                    </div>#}
+{#                </a>#}
+{#                <a href="#" class="lc-item">#}
+{#                    <div class="lc-item-inner">#}
+{#                        <img src="{% static 'img/logo-carousel/lc-6.png' %}" alt="">#}
+{#                    </div>#}
+{#                </a>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+    <!-- Logo Carousel End -->
+
+    <!-- Contact Section Begin -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="contact-info">
+                        <div class="ci-item">
+                            <div class="ci-icon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            <div class="ci-text">
+                                <h5>آدرس ما</h5>
+                                <p>{{ info.address }}</p>
+                            </div>
+                        </div>
+                        <div class="ci-item">
+                            <div class="ci-icon">
+                                <i class="fa fa-mobile"></i>
+                            </div>
+                            <div class="ci-text">
+                                <h5>تلفن تماس ما</h5>
+                                <ul>
+                                    <li>{{ info.phone }}</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="ci-item">
+                            <div class="ci-icon">
+                                <i class="fa fa-headphones"></i>
+                            </div>
+                            <div class="ci-text">
+                                <h5>نشانی ایمیل ما</h5>
+                                <p>{{ info.email }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cs-map">
+            <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d786.760842356485!2d46.1321631291956!3d37.92941725655465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x401a6dbee42d4703%3A0x9e8864017ff16bc6!2z2b7Ysdiq2KbbjNmGINiz2LHYp9uMINiy2YXYp9mG2LLYp9iv2Yc!5e0!3m2!1sen!2s!4v1634748702270!5m2!1sen!2s"
+                    height="450" style="border:0;" allowfullscreen=""></iframe>
+        </div>
+    </section>
+    <!-- Contact Section End -->
+
+    <!-- Footer Section Begin -->
+
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+
+{% endblock %}
+
