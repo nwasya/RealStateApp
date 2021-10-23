@@ -1059,7 +1059,7 @@ ol {
 .feature-property-left ul {
   margin-bottom: 45px;
 }
-.feature-property-left ul li {
+.feature-property-left ul li a {
   font-size: 14px;
   list-style: none;
   color: #c4c4c4;
@@ -3173,8 +3173,8 @@ li .richText-btn[data-command=toggleCode] {
 .blog-details-content .bc-widget .related-post .related-item .ri-pic img {
   min-width: 100%;
 }
-.blog-details-content .bc-widget .related-post .related-item .ri-text h6 {
-  color: #111111;
+.blog-details-content .bc-widget .related-post .related-item .ri-text  h6 {
+  color: #111111 !important;
   font-size: 15px;
   font-weight: 600;
   line-height: 20px;

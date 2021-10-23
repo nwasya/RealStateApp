@@ -164,42 +164,33 @@
     <section class="feature-property-section spad">
         <div class="container">
             <div class="row">
+            <div class="col-lg-8 p-0">
+                    <div class="fp-slider owl-carousel">
+                        {% for item in news %}
+                            <div class="fp-item set-bg" data-setbg="{{ item.image.url }}">
+                                <div class="fp-text">
+                                    <h5 class="title">{{ item.title }}</h5>
+
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
                 <div class="col-lg-4 p-0">
                     <div class="feature-property-left">
                         <div class="section-title">
                             <h4>خبر های اخیر</h4>
                         </div>
                         <ul>
-                            <li>آپارتمان</li>
-                            <li>خانه</li>
-                            <li>مغازه</li>
-                            <li>باغ</li>
-                            <li>ویلا</li>
-                            <li>رستوران</li>
+                            {% for item in news %}
+                            <a style="color: white;background-color: inherit;text-align: right" href="/all-news/ {{ item.id }}">{{ item.title }}</a>
+{#                                <hr style="background-color: white">#}
+                         {% endfor %}
                         </ul>
-                        <a href="#">مشاهده تمامی اخبار</a>
+                        <a style="background-color: inherit;color: white;border-style: solid;border-color: white;border-radius: 4rem" href="/all-news/all">مشاهده تمامی اخبار</a>
                     </div>
                 </div>
-                <div class="col-lg-8 p-0">
-                    <div class="fp-slider owl-carousel">
-                        {% for item in featured %}
-                            <div class="fp-item set-bg" data-setbg="{{ item.image.url }}">
-                                <div class="fp-text">
-                                    <h5 class="title">{{ item.title }}</h5>
-                                    <p><span class="icon_pin_alt"></span> {{ item.area }}</p>
-                                    <div class="label">برای {{ item.status }}</div>
-                                    <h5>تومان {{ item.price }}ماهانه </h5>
-                                    <ul>
-                                        <li><i class="fa fa-object-group"></i> {{ item.size }}</li>
-                                        <li><i class="fa fa-bathtub"></i> {{ item.floor }}</li>
-                                        <li><i class="fa fa-bed"></i> {{ item.bedroom }}</li>
-                                        <li><i class="fa fa-automobile"></i> {{ item.garage }}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>

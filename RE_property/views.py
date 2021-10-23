@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from RE_property.models import Property
+from RE_property.models import Property, PropertyImage
 
 
 def search_for_property(request, *args, **kwargs):
@@ -31,9 +31,39 @@ def search_for_property(request, *args, **kwargs):
 
 
 
+def get_property_detail(request,*args,**kwargs):
+    print(kwargs['property_id'],'jjj')
+    context = {}
+    li = []
+    obj = Property.objects.get(id=kwargs['property_id'])
+    all_images = PropertyImage.objects.filter(Property_id=obj.id)
+    for item in all_images:
+        li.append(item)
+    grouped_images = property_grouper(li)
+    context['images'] = grouped_images
+    context['property'] = obj
+    print(context['images'])
+
+
+
+    return render(request,'property_detail.html',context)
+
 def get_range(str_range: str) -> list:
     b = []
     a = str_range.split()
     b.append(int(a[1]))
     b.append(int(a[3]))
     return b
+
+def property_grouper(images : list)->dict:
+    li = []
+    dic = {}
+    counter = 0
+    for img in images:
+        li.append(img)
+        if len(li) == 5:
+            dic[counter] = li
+            li = []
+            counter +=1
+    dic[counter] = li
+    return dic

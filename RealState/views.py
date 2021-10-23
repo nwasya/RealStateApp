@@ -2,6 +2,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 
 from RE_info.models import Info
+from RE_news.models import News
 from RE_property.models import Property
 
 categories = ['restaurant',
@@ -35,6 +36,9 @@ def home(request, *args, **kwargs):
     context['all'] = x
     featured = Property.objects.filter(is_featured=True)
     context['featured'] = featured
+    ################################# News
+    news = News.objects.all().order_by('-added_date')[:5]
+    context['news'] = news
 
 
     return render(request, 'index.html', context)
