@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from RE_property.models import Property, PropertyImage
+from RE_property.models import Property, PropertyImage, Type, Features, Status
 
 
 def search_for_property(request, *args, **kwargs):
@@ -58,7 +58,7 @@ def save_property(request):
         city = request.POST['City']
         part = request.POST['part'] if 'part' in request.POST else None
         country = request.POST['Country']
-        postal = request.POST['Postal'] if "postal" in request.POST else None
+        postal = request.POST['postal'] if "postal" in request.POST else None
 
         apartment = request.POST['apartment'] if 'apartment' in request.POST else None
         house = request.POST['house'] if 'house' in request.POST else None
@@ -66,14 +66,20 @@ def save_property(request):
         villa = request.POST['villa'] if 'villa' in request.POST else None
         garden = request.POST['garden'] if 'garden' in request.POST else None
         restaurant = request.POST['restaurant'] if 'restaurant' in request.POST else None
+        li = [apartment, house, store, villa, garden, restaurant]
+        type_li = distinct_none_values(li)
 
         exchange = request.POST['exchange'] if 'exchange' in request.POST else None
         sale = request.POST['sale'] if 'sale' in request.POST else None
         rent = request.POST['rent'] if 'rent' in request.POST else None
+        li = [exchange, sale, rent]
+        status_li = distinct_none_values(li)
 
         price = request.POST['price']
-        sec_price = request.POST['sec_price'] if 'sec_price' in request.POST else None
-        monthly_price = request.POST['monthly_price'] if 'monthly_price' in request.POST else None
+        sec_price = request.POST['sec_price'] if (
+                    'sec_price' in request.POST and request.POST['sec_price'] != "") else 0
+        monthly_price = request.POST['monthly_price'] if (
+                    'monthly_price' in request.POST and request.POST['monthly_price'] != "") else 0
 
         cooling = request.POST['cooling'] if 'cooling' in request.POST else None
         heater = request.POST['heater'] if 'heater' in request.POST else None
@@ -91,8 +97,25 @@ def save_property(request):
         phone = request.POST['phone'] if 'phone' in request.POST else None
         antenna = request.POST['antenna'] if 'antenna' in request.POST else None
         villa = request.POST['villa'] if 'villa' in request.POST else None
+        li = [cooling,
+              heater,
+              refrigerator,
+              washer,
+              barbeque,
+              lawn,
+              sauna,
+              wifi,
+              cabinet,
+              microwave,
+              pool,
+              window,
+              gym,
+              phone,
+              antenna,
+              villa]
+        features_li = distinct_none_values(li)
 
-        my_images = request.FILES.get('file')
+        my_images = request.FILES.getlist('images[]')
 
         property_id = request.POST['code']
         area = request.POST['area']
@@ -100,14 +123,53 @@ def save_property(request):
         bedroom = request.POST['bedroom']
         bathroom = request.POST['bathroom']
         garage = request.POST['garage']
+        floor = request.POST['floor']
         garage_area = request.POST['garage_area']
         year = request.POST['year'] if 'year' in request.POST else None
         video_link = request.POST['video_link'] if 'video_link' in request.POST else None
 
-        obj = Property(title=title,description=description)
+        obj = Property(title=title,
+                       description=description,
+                       property_id=property_id,
+                       user=request.user,
+                       city=city,
+                       part=part,
+                       bedroom=bedroom,
+                       bathroom=bathroom,
+                       floor=floor,
+                       area=area,
+                       garage_area=garage_area,
+                       area_unit=area_unit,
+                       price=price,
+                       sec_price=sec_price,
+                       monthly_price=monthly_price,
+                       address=address,
+                       garage=garage,
+                       short_description=short_description,
+                       videos=video_link,
+                       postal=postal,
+                       country=country,
+                       year=year)
+
         obj.save()
 
-        print(title)
+        for item in type_li:
+            id = Type.objects.get(value__exact=item).id
+            obj.type.add(id)
+        for item in features_li:
+            id = Features.objects.get(value__exact=item).id
+
+            obj.features.add(id)
+        for item in status_li:
+            id = Status.objects.get(value__exact=item).id
+            obj.status.add(id)
+
+        for image in my_images:
+            pi = PropertyImage(Property=obj, images=image)
+            pi.save()
+
+        obj.save()
+
     context = {}
     return render(request, 'add_property.html', context)
 
@@ -132,3 +194,12 @@ def property_grouper(images: list) -> dict:
             counter += 1
     dic[counter] = li
     return dic
+
+
+def distinct_none_values(li: list) -> list:
+    ret = []
+    for i in li:
+        if i != None:
+            ret.append(i)
+
+    return ret
