@@ -1,0 +1,181 @@
+[
+  {
+    "model": "RE_property.type",
+    "pk": 1,
+    "fields": {
+      "title": "رستوران",
+      "value": "restaurant"
+    }
+  },{
+    "model": "RE_property.type",
+    "pk": 2,
+    "fields": {
+      "title": "خانه",
+      "value": "house"
+    }
+  },{
+    "model": "RE_property.type",
+    "pk": 3,
+    "fields": {
+      "title": "باغ",
+      "value": "garden"
+    }
+  },{
+    "model": "RE_property.type",
+    "pk": 4,
+    "fields": {
+      "title": "ویلا",
+      "value": "villa"
+    }
+  },{
+    "model": "RE_property.type",
+    "pk": 5,
+    "fields": {
+      "title": "آپارتمان",
+      "value": "apartment"
+    }
+  },{
+    "model": "RE_property.type",
+    "pk":6,
+    "fields": {
+      "title": "مغازه",
+      "value": "store"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":7,
+    "fields": {
+      "title": "کولر",
+      "value": "cooling"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":8,
+    "fields": {
+      "title": "بخاری",
+      "value": "heater"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":9,
+    "fields": {
+      "title": "یخچال",
+      "value": "refrigerator"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":10,
+    "fields": {
+      "title": "ظرف شویی",
+      "value": "washer"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":11,
+    "fields": {
+      "title": "حیاط",
+      "value": "lawn"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":12,
+    "fields": {
+      "title": "منقل",
+      "value": "barbeque"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":13,
+    "fields": {
+      "title": "سونا",
+      "value": "sauna"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":14,
+    "fields": {
+      "title": "وای فای",
+      "value": "wifi"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":15,
+    "fields": {
+      "title": "کابینت",
+      "value": "cabinet"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":16,
+    "fields": {
+      "title": "مایکروویو",
+      "value": "microwave"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":17,
+    "fields": {
+      "title": "استخر",
+      "value": "pool"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":18,
+    "fields": {
+      "title": "پرده",
+      "value": "window"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":19,
+    "fields": {
+      "title": "سالن ورزشی",
+      "value": "gym"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":20,
+    "fields": {
+      "title": "تلفن",
+      "value": "phone"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":21,
+    "fields": {
+      "title": "آنتن",
+      "value": "antenna"
+    }
+  },{
+    "model": "RE_property.features",
+    "pk":22,
+    "fields": {
+      "title": "ویلا",
+      "value": "villa"
+    }
+  },{
+    "model": "RE_property.status",
+    "pk":23,
+    "fields": {
+      "title": "اجاره",
+      "value": "rent"
+    }
+  },{
+    "model": "RE_property.status",
+    "pk":24,
+    "fields": {
+      "title": "فروش",
+      "value": "sale"
+    }
+  },{
+    "model": "RE_property.status",
+    "pk":25,
+    "fields": {
+      "title": "معاوضه",
+      "value": "exchange"
+    }
+  }
+
+
+]
+
