@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 
 from RE_info.models import Info
 from RE_news.models import News
-from RE_property.models import Property
+from RE_property.models import Property, Type
 
 categories = ['restaurant',
                   'house',
@@ -25,13 +25,15 @@ def home(request, *args, **kwargs):
                }
 
     #############
+    categories = Type.objects.all()
 
     for category in categories:
-        x = Property.objects.filter(type__exact=category)
+
+        x = Property.objects.filter(type__title__exact=category.title)
         count = x.count()
         y = x.order_by('-added_date')[:6]
-        context[category] = y
-        context[category + '_count'] = count
+        context[category.value] = y
+        context[category.value + '_count'] = count
     x = Property.objects.all().order_by('-added_date')[:6]
     context['all'] = x
     featured = Property.objects.filter(is_featured=True)

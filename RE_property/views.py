@@ -116,6 +116,7 @@ def save_property(request):
         features_li = distinct_none_values(li)
 
         my_images = request.FILES.getlist('images[]')
+        main_image = request.FILES.get('main_image')
 
         property_id = request.POST['code']
         area = request.POST['area']
@@ -149,7 +150,8 @@ def save_property(request):
                        videos=video_link,
                        postal=postal,
                        country=country,
-                       year=year)
+                       year=year,
+                       image=main_image)
 
         obj.save()
 

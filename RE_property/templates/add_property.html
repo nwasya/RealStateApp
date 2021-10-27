@@ -33,7 +33,7 @@
                 <div class="col-lg-12 float-right ">
 
                     <div class="property-submit-form">
-                        <form method="post" action="#" enctype="multipart/form-data" >
+                        <form method="post" action="#" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="pf-title">
                                 <h4 class="text-right">عنوان</h4>
@@ -43,7 +43,8 @@
                             <div class="pb-4">
                                 <h4 class="text-right">توضیحات</h4>
                                 <textarea class="form-control text-right mb-3" required name="content"
-                                         maxlength="100" placeholder=" توضیحات کوتاه ملک در همین بخش وارد کنید این بخش صرفا معرفی ملک خواهد بود و پایین آیتم ها نمایش داد خواهد شد"></textarea>
+                                          maxlength="100"
+                                          placeholder=" توضیحات کوتاه ملک در همین بخش وارد کنید این بخش صرفا معرفی ملک خواهد بود و پایین آیتم ها نمایش داد خواهد شد"></textarea>
                                 <textarea class="form-control text-right" required name="short_content"
                                           placeholder="توضیحات تکمیلی ملک در همین بخش وارد کنید"></textarea>
                             </div>
@@ -123,8 +124,12 @@
                                 <input class="text-right mb-2" name="monthly_price" type="text"
                                        placeholder="مبلغ ماهیانه مورد نیاز برای ملک را وارد نمایید این بخش اختیاری می باشد">
                             </div>
+                            <h4 class="text-right pt-2">تصویر اصلی</h4>
+
+
+                            <input class="form-control" name="main_image" type="file" id="formFile" accept="image/*">
                             <div class="pf-feature">
-                                <h4 class="text-right">ویژگی های ملک</h4>
+                                <h4 class="text-right pt-2">ویژگی های ملک</h4>
                                 <div class="features-list">
                                     <div class="feature-item">
                                         <label for="cooling">کولر
@@ -211,7 +216,7 @@
                                 <h4 class="text-right">جزعیات ملک</h4>
 
 
-                                <div class="property-details-inputs">
+                                <div class="property-details-inputs float-right ">
                                     <input class="text-right" name="code" type="text" required placeholder="کد ملک">
                                     <input class="text-right" name="area" type="number" required
                                            placeholder="مساحت ملک">
@@ -219,7 +224,7 @@
                                            placeholder="واحد مساحت">
                                     <input class="text-right" name="bedroom" type="number" required
                                            placeholder="تعداد اتاق خواب">
-                                    <input class="text-right" name="bathroom" type="number" required
+                                    <input  class="text-right" name="bathroom" type="number" required
                                            placeholder="تعداد سرویس بهداشتی">
                                     <input class="text-right" name="garage" type="number" required
                                            placeholder="تعداد پارکینگ">
