@@ -16,8 +16,8 @@
         <span class="icon_close"></span>
     </div>
     <div class="logo">
-        <a href="./index.html">
-            <img src="{% static 'img/logo.png' %}" alt="">
+        <a href="./">
+            <img src="{% static 'img/018 Corel-amlak-2.png' %}" alt="">
         </a>
     </div>
     <div id="mobile-menu-wrap"></div>
@@ -45,7 +45,8 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="logo">
-                        <a href="./index.html"><img src="{% static 'img/logo.png' %}" alt=""></a>
+
+                        <a href="./"><img src="{% static 'img/018 Corel-amlak-2.png' %}" style="height: 50px" alt="AmlakRostamzadeh" title="AmlakRostamzadeh"></a>
                     </div>
                 </div>
                 <div class="col-lg-10">
@@ -54,7 +55,7 @@
                             <li><i class="icon_mail_alt"></i> {{ email}}</li>
                             <li><i class="fa fa-mobile-phone"></i> <span>{{ phone }}</span></li>
                         </ul>
-                        <a href="{% url 'add-property' %}" class="hw-btn">ثبت ملک</a>
+                        <a href="add-property/save" class="hw-btn">ثبت ملک</a>
                     </div>
                 </div>
             </div>
@@ -85,11 +86,11 @@
                             <li><a href="/">اخبار</a></li>
                             <li><a href="/">درباره ما</a></li>
                             <li><a href="/">مشاورین فروش</a></li>
-                            <li><a href="#">ملک ها</a>
+                            <li><a href="{% url 'property-items-all' %}">ملک ها</a>
                                 <ul class="dropdown">
-                                    <li><a class="text-left" href="/property-details">تمامی ملک ها</a></li>
-                                    <li><a class="text-left" href="/profile">پر بازدید ترین ها</a></li>
-                                    <li><a class="text-left" href="/property">آخرین ملک ها</a></li>
+                                    <li><a class="text-left" href="{% url 'property-items-all' %}">تمامی ملک ها</a></li>
+                                    <li><a class="text-left" href="{% url 'property-items-most-viewed' %}">پر بازدید ترین ها</a></li>
+                                    <li><a class="text-left" href="{% url 'property-items-latest' %}">آخرین ملک ها</a></li>
 {#                                    <li><a href="/property-submit">Property Submit</a></li>#}
                                 </ul>
                             </li>

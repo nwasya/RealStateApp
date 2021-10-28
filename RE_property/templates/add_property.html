@@ -33,35 +33,41 @@
                 <div class="col-lg-12 float-right ">
 
                     <div class="property-submit-form">
-                        <form method="post" action="#" enctype="multipart/form-data">
+
+                    {% if mode == 'edit' %}
+                    <h6 class="text-right">شما در حال ویرایش ملک {{ property.title }} هستید.امکان ویرایش عکس وجود ندارد در صورت تمایل به ویرایش عکس این ملک را حذف نموده و مجددا ثبت نمایید</h6>
+                       <hr class="pb-5">
+                    {% endif %}
+                    <form  method="post" action="#" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="pf-title">
                                 <h4 class="text-right">عنوان</h4>
-                                <input class="text-right" name="title" type="text" required
+                                <input value="{{ property.title }}" class="text-right" name="title" type="text" required
                                        placeholder="نام ملک : این نام در سر خط تمامی ملک ها نمایش داده خواهد شد">
+                                <input name="hidden_mode" type="hidden" value="{% if mode == 'edit' %} {{ property.id }} {% else %} None {% endif %}">
                             </div>
                             <div class="pb-4">
                                 <h4 class="text-right">توضیحات</h4>
-                                <textarea class="form-control text-right mb-3" required name="content"
+                                <textarea  class="form-control text-right mb-3" required name="content"
                                           maxlength="100"
-                                          placeholder=" توضیحات کوتاه ملک در همین بخش وارد کنید این بخش صرفا معرفی ملک خواهد بود و پایین آیتم ها نمایش داد خواهد شد"></textarea>
-                                <textarea class="form-control text-right" required name="short_content"
-                                          placeholder="توضیحات تکمیلی ملک در همین بخش وارد کنید"></textarea>
+                                          placeholder=" توضیحات کوتاه ملک در همین بخش وارد کنید این بخش صرفا معرفی ملک خواهد بود و پایین آیتم ها نمایش داد خواهد شد">{{ property.short_description }}</textarea>
+                                <textarea value="{{ property.description }}" class="form-control text-right" required name="short_content"
+                                          placeholder="توضیحات تکمیلی ملک در همین بخش وارد کنید">{{ property.description }}</textarea>
                             </div>
                             <div class="pf-location">
                                 <h4 class="text-right">موقعیت ملک</h4>
                                 <div class="location-inputs">
-                                    <input class="text-right" name='Address' required type="text"
+                                    <input value="{{ property.address }}" class="text-right" name='Address' required type="text"
                                            placeholder="آدرس ملک را وارد نمایید.لزومی بر درج آدرس دقیق نمی باشد">
-                                    <input class="text-right" name='neighborhood' required type="text"
+                                    <input value="{{ property.neighborhood }}" class="text-right" name='neighborhood' required type="text"
                                            placeholder="محله یا همسایگی ملک را وارد نمایید. به عنوان مثال مجلسی">
-                                    <input class="text-right" name='City' required type="text"
+                                    <input value="{{ property.city }}" class="text-right" name='City' required type="text"
                                            placeholder="شهر ملک را وارد نمایید به عنوان مثال سهند">
-                                    <input class="text-right" name='part' type="text"
+                                    <input value="{{ property.part }}" class="text-right" name='part' type="text"
                                            placeholder="بخش شهر ملک را وارد نمایید به عنوان مثال خسروشاه">
-                                    <input class="text-right" name='Country' required type="text"
+                                    <input value="{{ property.country }}" class="text-right" name='Country' required type="text"
                                            placeholder="کشور ملک را وارد نمایید. به عنوان مثال ایران">
-                                    <input class="text-right" name='postal' type="text"
+                                    <input value="{{ property.postal }}" class="text-right" name='postal' type="text"
                                            placeholder="کد پستی ملک را وارد نمایید این بخش اختیاری می باشد">
                                 </div>
                             </div>
@@ -70,27 +76,27 @@
                                 <h4 class="text-right"> نوع ملک</h4>
                                 <div class="type-item">
                                     <label for="pt-apart">آپارتمان
-                                        <input name="apartment" type="checkbox" value="apartment" id="pt-apart">
+                                        <input name="apartment" type="checkbox" value="apartment" {% if 'apartment' in type %}checked{% endif %} id="pt-apart">
                                         <span class="checkbox"></span>
                                     </label>
                                     <label for="pt-house">خانه
-                                        <input name="house" type="checkbox" value="house" id="pt-house">
+                                        <input name="house" type="checkbox" value="house" {% if 'house' in type %}checked{% endif %} id="pt-house">
                                         <span class="checkbox"></span>
                                     </label>
                                     <label for="pt-off">مغازه
-                                        <input name="store" type="checkbox" value="store" id="pt-off">
+                                        <input name="store" type="checkbox" value="store" {% if 'store' in type %}checked{% endif %} id="pt-off">
                                         <span class="checkbox"></span>
                                     </label>
                                     <label for="pt-villa">ویلا
-                                        <input name="villa" type="checkbox" value="villa" id="pt-villa">
+                                        <input name="villa" type="checkbox" value="villa" {% if 'villa' in type %}checked{% endif %} id="pt-villa">
                                         <span class="checkbox"></span>
                                     </label>
                                     <label for="pt-store">باغ
-                                        <input name="garden" type="checkbox" value="garden" id="pt-store">
+                                        <input name="garden" type="checkbox" value="garden" {% if 'garden' in type %}checked{% endif %} id="pt-store">
                                         <span class="checkbox"></span>
                                     </label>
                                     <label for="pt-rest">رستوران
-                                        <input name="restaurant" type="checkbox" value="restaurant" id="pt-rest">
+                                        <input name="restaurant" type="checkbox" value="restaurant" {% if 'restaurant' in type %}checked{% endif %} id="pt-rest">
                                         <span class="checkbox"></span>
                                     </label>
                                 </div>
@@ -99,15 +105,15 @@
                                 <h4 class="text-right">وضعیت ملک</h4>
                                 <div class="status-item ">
                                     <label for="ps-rent">اجاره
-                                        <input type="checkbox" name="rent" value="rent" id="ps-rent">
+                                        <input type="checkbox" name="rent" {% if 'rent' in status %}checked{% endif %} value="rent" id="ps-rent">
                                         <span class="checkbox"></span>
                                     </label>
                                     <label for="ps-sale">فروش
-                                        <input type="checkbox" name="sale" value="sale" id="ps-sale">
+                                        <input type="checkbox" name="sale" {% if 'sale' in status %}checked{% endif %} value="sale" id="ps-sale">
                                         <span class="checkbox"></span>
                                     </label>
                                     <label for="ps-exchange">معاوضه
-                                        <input type="checkbox" name="exchange" value="exchange" id="ps-exchange">
+                                        <input type="checkbox" name="exchange" {% if 'exchange' in status %}checked{% endif %} value="exchange" id="ps-exchange">
                                         <span class="checkbox"></span>
                                     </label>
                                 </div>
@@ -115,125 +121,129 @@
                             <div>
                                 <h4 class="text-right">قیمت ملک</h4>
 
-                                <input class="text-right mb-2" name="price" required type="text"
+                                <input value="{{ property.price }}" class="text-right mb-2" name="price" required type="text"
                                        placeholder="قیمت ملک راوارد نمایید قیمت وارد شده با کلمه حدودا برای مخاطبین نمایش داده می شود">
 
-                                <input class="text-right mb-2" name="sec_price" type="text"
+                                <input value="{{ property.sec_price }}" class="text-right mb-2" name="sec_price" type="text"
                                        placeholder="قیمت توافقی را وارد نمایید این بخش اختیاری می باشد">
 
-                                <input class="text-right mb-2" name="monthly_price" type="text"
+                                <input value="{{ property.monthly_price }}" class="text-right mb-2" name="monthly_price" type="text"
                                        placeholder="مبلغ ماهیانه مورد نیاز برای ملک را وارد نمایید این بخش اختیاری می باشد">
                             </div>
-                            <h4 class="text-right pt-2">تصویر اصلی</h4>
+                           {% if mode == 'save' %}
+                         <h4 class="text-right pt-2">تصویر اصلی</h4>
 
 
-                            <input class="form-control" name="main_image" type="file" id="formFile" accept="image/*">
+                            <input  src="{{ property.image.url }}" class="form-control" name="main_image" type="file" id="formFile" accept="image/*">
+                        {% endif %}
                             <div class="pf-feature">
                                 <h4 class="text-right pt-2">ویژگی های ملک</h4>
                                 <div class="features-list">
                                     <div class="feature-item">
                                         <label for="cooling">کولر
-                                            <input name="cooling" value="cooling" type="checkbox" id="cooling">
+                                            <input name="cooling" value="cooling" {% if 'cooling' in features %}checked{% endif %} type="checkbox" id="cooling">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="heater">بخاری
-                                            <input name="heater" value="heater" type="checkbox" id="heater">
+                                            <input name="heater" value="heater" {% if 'heater' in features %}checked{% endif %} type="checkbox" id="heater">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="refrigerator">یخچال
-                                            <input name="refrigerator" value="refrigerator" type="checkbox"
+                                            <input name="refrigerator" value="refrigerator" {% if 'refrigerator' in features %}checked{% endif %} type="checkbox"
                                                    id="refrigerator">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="washer">ظرف شویی
-                                            <input name="washer" value="washer" type="checkbox" id="washer">
+                                            <input name="washer" value="washer" {% if 'washer' in features %}checked{% endif %} type="checkbox" id="washer">
                                             <span class="checkbox"></span>
                                         </label>
                                     </div>
                                     <div class="feature-item">
                                         <label for="barbeque">منقل
-                                            <input name="barbeque" value="barbeque" type="checkbox" id="barbeque">
+                                            <input name="barbeque" value="barbeque" {% if 'barbeque' in features %}checked{% endif %} type="checkbox" id="barbeque">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="lawn">حیاط
-                                            <input name="lawn" value="lawn" type="checkbox" id="lawn">
+                                            <input name="lawn" value="lawn" {% if 'lawn' in features %}checked{% endif %} type="checkbox" id="lawn">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="sauna">سونا
-                                            <input name="sauna" value="sauna" type="checkbox" id="sauna">
+                                            <input name="sauna" value="sauna" {% if 'sauna' in features %}checked{% endif %} type="checkbox" id="sauna">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="wifi">وای فای
-                                            <input name="wifi" value="wifi" type="checkbox" id="wifi">
+                                            <input name="wifi" value="wifi" {% if 'wifi' in features %}checked{% endif %} type="checkbox" id="wifi">
                                             <span class="checkbox"></span>
                                         </label>
                                     </div>
                                     <div class="feature-item">
                                         <label for="cabinet">کابینت
-                                            <input name="cabinet" value="cabinet" type="checkbox" id="cabinet">
+                                            <input name="cabinet" value="cabinet" {% if 'cabinet' in features %}checked{% endif %} type="checkbox" id="cabinet">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="microwave">مایکروویو
-                                            <input name="microwave" value="microwave" type="checkbox" id="microwave">
+                                            <input name="microwave" value="microwave" {% if 'microwave' in features %}checked{% endif %} type="checkbox" id="microwave">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="pool">استخر
-                                            <input name="pool" value="pool" type="checkbox" id="pool">
+                                            <input name="pool" value="pool" {% if 'pool' in features %}checked{% endif %} type="checkbox" id="pool">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="window">پرده
-                                            <input name="window" value="window" type="checkbox" id="window">
+                                            <input name="window" value="window" {% if 'window' in features %}checked{% endif %} type="checkbox" id="window">
                                             <span class="checkbox"></span>
                                         </label>
                                     </div>
                                     <div class="feature-item">
                                         <label for="gym">سالن ورزشی
-                                            <input name="gym" value="gym" type="checkbox" id="gym">
+                                            <input name="gym" value="gym" {% if 'gym' in features %}checked{% endif %} type="checkbox" id="gym">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="phone">تلفن
-                                            <input name="phone" value="phone" type="checkbox" id="phone">
+                                            <input name="phone" value="phone" {% if 'phone' in features %}checked{% endif %} type="checkbox" id="phone">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="antenna">آنتن
-                                            <input name="antenna" value="antenna" type="checkbox" id="antenna">
+                                            <input name="antenna" value="antenna" {% if 'antenna' in features %}checked{% endif %} type="checkbox" id="antenna">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="villa">ویلا
-                                            <input name="villa" value="villa" type="checkbox" id="villa">
+                                            <input name="villa" value="villa" {% if 'villa' in features %}checked{% endif %} type="checkbox" id="villa">
                                             <span class="checkbox"></span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="pf-feature-image">
+                            {% if mode == 'save' %}
+                        <div class="pf-feature-image">
                                 <h4 class="text-right">تصاویر ملک</h4>
 
                                 <div class="feature-image-content"></div>
                             </div>
+                        {% endif %}
                             <div class="pf-property-details">
                                 <h4 class="text-right">جزعیات ملک</h4>
 
 
                                 <div class="property-details-inputs float-right ">
-                                    <input class="text-right" name="code" type="text" required placeholder="کد ملک">
-                                    <input class="text-right" name="area" type="number" required
+                                    <input value="{{ property.property_id }}" class="text-right" name="code" type="text" required placeholder="کد ملک">
+                                    <input value="{{ property.area }}" class="text-right" name="area" type="number" required
                                            placeholder="مساحت ملک">
-                                    <input class="text-right" name="area_unit" type="text" required
+                                    <input value="{{ property.area_unit }}" class="text-right" name="area_unit" type="text" required
                                            placeholder="واحد مساحت">
-                                    <input class="text-right" name="bedroom" type="number" required
+                                    <input value="{{ property.bedroom }}" class="text-right" name="bedroom" type="number" required
                                            placeholder="تعداد اتاق خواب">
-                                    <input  class="text-right" name="bathroom" type="number" required
+                                    <input value="{{ property.bathroom }}"  class="text-right" name="bathroom" type="number" required
                                            placeholder="تعداد سرویس بهداشتی">
-                                    <input class="text-right" name="garage" type="number" required
+                                    <input value="{{ property.garage }}" class="text-right" name="garage" type="number" required
                                            placeholder="تعداد پارکینگ">
-                                    <input class="text-right" name="floor" type="number" required
+                                    <input value="{{ property.floor }}" class="text-right" name="floor" type="number" required
                                            placeholder="تعداد طبقه">
-                                    <input class="text-right" name="garage_area" type="number" required
+                                    <input value="{{ property.garage_area }}" class="text-right" name="garage_area" type="number" required
                                            placeholder="مساحت پارکینگ">
-                                    <input class="text-right" name="year" type="number" placeholder="سال ساخت">
-                                    <input class="text-right" name="video_link" type="text"
+                                    <input value="{{ property.year }}" class="text-right" name="year" type="number" placeholder="سال ساخت">
+                                    <input value="{{ property.video_link }}" class="text-right" name="video_link" type="text"
                                            placeholder="لینک تور مجازی">
                                 </div>
                                 <button type="submit" class="site-btn">ثبت نهایی ملک</button>

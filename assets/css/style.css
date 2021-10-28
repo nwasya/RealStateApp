@@ -150,7 +150,7 @@ ol {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   padding-left: 20px;
-  float: right;
+  text-align: right;
 }
 .section-title h4:after,
 .section-title h5:after,
@@ -848,7 +848,7 @@ ol {
   position: relative;
 }
 .property-item .pi-text .heart-icon {
-  position: absolute;
+  float: left;
   right: 0;
   top: 0;
   content: "";

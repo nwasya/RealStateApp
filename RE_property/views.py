@@ -1,7 +1,11 @@
 from django.shortcuts import render
 
 # Create your views here.
+from django.views.generic import ListView
+
+from RE_comment.models import PropertyComment
 from RE_property.models import Property, PropertyImage, Type, Features, Status
+from RE_user.models import SiteUser
 
 
 def search_for_property(request, *args, **kwargs):
@@ -30,8 +34,23 @@ def search_for_property(request, *args, **kwargs):
 
 
 def get_property_detail(request, *args, **kwargs):
-    print(kwargs['property_id'], 'jjj')
-    context = {}
+
+    comment_list = PropertyComment.objects.filter(object__id=kwargs['property_id'], confirmed=True).all()
+
+    context = {'comments': comment_list}
+    categories = ['restaurant',
+                  'house',
+                  'garden',
+                  'villa',
+                  'apartment',
+                  'store']
+    for category in categories:
+        x = Property.objects.filter(type__title__exact=category.title)
+        count = x.count()
+        context[category + '_count'] = count
+
+    top_agents = SiteUser.objects.all().order_by('rate')[:3]
+    context['top_agents'] = top_agents
     li = []
     obj = Property.objects.get(id=kwargs['property_id'])
     all_images = PropertyImage.objects.filter(Property_id=obj.id)
@@ -45,16 +64,26 @@ def get_property_detail(request, *args, **kwargs):
     return render(request, 'property_detail.html', context)
 
 
-def save_property(request):
-    title = []
+def save_property(request, *args, **kwargs):
+    context = {'mode': 'save'}
+    if kwargs['property_id'] != 'save':
+        # edit part
+        obj = Property.objects.get(id=kwargs['property_id'])
+        context['type'] = [type.value for type in obj.type.all()]
+        context['features'] = [features.value for features in obj.features.all()]
+        context['status'] = [status.value for status in obj.status.all()]
+        context['property'] = obj
+        context['mode'] = 'edit'
     if request.method == 'POST':
+
+        # save part
         title = request.POST['title']
 
         description = request.POST['content']
         short_description = request.POST['short_content']
 
         address = request.POST['Address']
-        neighborhood = request.POST['neighborhood']
+        neighborhood = request.POST['neighborhood']  # we need to add this in our model
         city = request.POST['City']
         part = request.POST['part'] if 'part' in request.POST else None
         country = request.POST['Country']
@@ -77,9 +106,9 @@ def save_property(request):
 
         price = request.POST['price']
         sec_price = request.POST['sec_price'] if (
-                    'sec_price' in request.POST and request.POST['sec_price'] != "") else 0
+                'sec_price' in request.POST and request.POST['sec_price'] != "") else 0
         monthly_price = request.POST['monthly_price'] if (
-                    'monthly_price' in request.POST and request.POST['monthly_price'] != "") else 0
+                'monthly_price' in request.POST and request.POST['monthly_price'] != "") else 0
 
         cooling = request.POST['cooling'] if 'cooling' in request.POST else None
         heater = request.POST['heater'] if 'heater' in request.POST else None
@@ -115,9 +144,6 @@ def save_property(request):
               villa]
         features_li = distinct_none_values(li)
 
-        my_images = request.FILES.getlist('images[]')
-        main_image = request.FILES.get('main_image')
-
         property_id = request.POST['code']
         area = request.POST['area']
         area_unit = request.POST['area_unit']
@@ -128,32 +154,79 @@ def save_property(request):
         garage_area = request.POST['garage_area']
         year = request.POST['year'] if 'year' in request.POST else None
         video_link = request.POST['video_link'] if 'video_link' in request.POST else None
+        if request.POST['hidden_mode'] != ' None ':
+            """
+            edit mode:we get the pictures from obj itself 
+            """
+            user = SiteUser.objects.get(user__username=request.user.username)
 
-        obj = Property(title=title,
-                       description=description,
-                       property_id=property_id,
-                       user=request.user,
-                       city=city,
-                       part=part,
-                       bedroom=bedroom,
-                       bathroom=bathroom,
-                       floor=floor,
-                       area=area,
-                       garage_area=garage_area,
-                       area_unit=area_unit,
-                       price=price,
-                       sec_price=sec_price,
-                       monthly_price=monthly_price,
-                       address=address,
-                       garage=garage,
-                       short_description=short_description,
-                       videos=video_link,
-                       postal=postal,
-                       country=country,
-                       year=year,
-                       image=main_image)
+            obj = Property.objects.get(id=int(request.POST['hidden_mode']))
+            obj.type.clear()
+            obj.features.clear()
+            obj.status.clear()
+            obj.title = title
+            obj.description = description
+            obj.property_id = property_id
+            obj.user = user
+            obj.city = city
+            obj.part = part
+            obj.bedroom = bedroom
+            obj.bathroom = bathroom
+            obj.floor = floor
+            obj.area = area
+            obj.garage_area = garage_area
+            obj.area_unit = area_unit
+            obj.price = price
+            obj.sec_price = sec_price
+            obj.monthly_price = monthly_price
+            obj.address = address
+            obj.garage = garage
+            obj.short_description = short_description
+            obj.videos = video_link
+            obj.postal = postal
+            obj.country = country
+            obj.year = year
 
-        obj.save()
+
+
+
+
+        else:
+            """
+            save mode : we get photos from form itself
+            """
+            my_images = request.FILES.getlist('images[]')
+            main_image = request.FILES.get('main_image')
+            user = SiteUser.objects.get(user__username=request.user.username)
+
+            obj = Property(title=title,
+                           description=description,
+                           property_id=property_id,
+                           user=user,
+                           city=city,
+                           part=part,
+                           bedroom=bedroom,
+                           bathroom=bathroom,
+                           floor=floor,
+                           area=area,
+                           garage_area=garage_area,
+                           area_unit=area_unit,
+                           price=price,
+                           sec_price=sec_price,
+                           monthly_price=monthly_price,
+                           address=address,
+                           garage=garage,
+                           short_description=short_description,
+                           videos=video_link,
+                           postal=postal,
+                           country=country,
+                           year=year,
+                           image=main_image)
+
+            obj.save()
+            for image in my_images:
+                pi = PropertyImage(Property=obj, images=image)
+                pi.save()
 
         for item in type_li:
             id = Type.objects.get(value__exact=item).id
@@ -166,14 +239,64 @@ def save_property(request):
             id = Status.objects.get(value__exact=item).id
             obj.status.add(id)
 
-        for image in my_images:
-            pi = PropertyImage(Property=obj, images=image)
-            pi.save()
-
         obj.save()
 
-    context = {}
+
     return render(request, 'add_property.html', context)
+
+
+def delete_property(request, *args, **kwargs):
+    obj = Property.objects.filter(user__user__username=request.user.username)
+    context = {'property': obj}
+    property_id = kwargs['property_id']
+    if property_id != 'delete':
+        obj = Property.objects.get(id=property_id)
+        obj.delete()
+    return render(request, 'delete_property.html', context)
+
+
+
+class AllProperty(ListView):
+    template_name = 'property_list.html'
+    paginate_by = 9
+    def get_queryset(self):
+        return Property.objects.all()
+
+
+
+
+
+class MostViewedProperty(ListView):
+    template_name = 'property_list.html'
+    paginate_by = 9
+    def get_queryset(self):
+        return Property.objects.all().order_by('viewed_count')
+
+
+
+
+
+
+class RecentProperty(ListView):
+    template_name = 'property_list.html'
+    paginate_by = 9
+    def get_queryset(self):
+        return Property.objects.all().order_by('-added_date')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def get_range(str_range: str) -> list:

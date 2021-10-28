@@ -1,9 +1,11 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
 
+from RE_comment.models import PropertyComment
 from RE_info.models import Info
 from RE_news.models import News
 from RE_property.models import Property, Type
+from RE_user.models import SiteUser
 
 categories = ['restaurant',
                   'house',
@@ -35,12 +37,21 @@ def home(request, *args, **kwargs):
         context[category.value] = y
         context[category.value + '_count'] = count
     x = Property.objects.all().order_by('-added_date')[:6]
+
+
     context['all'] = x
     featured = Property.objects.filter(is_featured=True)
     context['featured'] = featured
     ################################# News
     news = News.objects.all().order_by('-added_date')[:5]
     context['news'] = news
+    ############################
+    agents = SiteUser.objects.all().order_by('rate')[:3]
+    context['agents'] = agents
+
+    #################################
+    comments = PropertyComment.objects.all()[:6]
+    context['comments'] = comments
 
 
     return render(request, 'index.html', context)

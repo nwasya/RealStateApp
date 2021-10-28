@@ -1,11 +1,12 @@
 import os
 from datetime import time, datetime
 
-from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
 from django.db.models import Q
+
+from RE_user.models import SiteUser
 
 type = [('restaurant', 'رستوران'),
         ('house', 'خانه'),
@@ -100,9 +101,9 @@ class Status(models.Model):
 
 
 class Property(models.Model):
-    title = models.CharField(max_length=20)
+    title = models.CharField(max_length=20,unique=True)
     property_id = models.IntegerField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(SiteUser, on_delete=models.CASCADE)
     city = models.CharField(max_length=20)
     type = models.ManyToManyField(Type,null=True)
 

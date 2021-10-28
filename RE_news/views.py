@@ -4,7 +4,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.generic import TemplateView, ListView
 
-from RE_comment.models import PropertyComment
+from RE_comment.models import NewsComment
 from RE_news.models import News
 
 
@@ -54,12 +54,12 @@ def get_news_detail(request, *args, **kwargs):
         text = request.POST['text']
         print(full_name, email, text)
         product_object = News.objects.get(id=kwargs['id'])
-        PropertyComment.objects.create(full_name=full_name, email=email, text=text, object=product_object,
+        NewsComment.objects.create(full_name=full_name, email=email, text=text, object=product_object,
                                        confirmed=False).save()
 
         return HttpResponseRedirect(f'/blog-detail/{kwargs["id"]}')
 
-    comment_list = PropertyComment.objects.filter(object__id=kwargs['id'], confirmed=True).all()
+    comment_list = NewsComment.objects.filter(object__id=kwargs['id'], confirmed=True).all()
     context = {
         'comments': comment_list,
         'new': obj,
