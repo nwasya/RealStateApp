@@ -36,6 +36,7 @@ urlpatterns = [
 path('', include('RE_account.urls')),
 path('', include('RE_property.urls')),
 path('', include('RE_news.urls')),
+path('', include('RE_user.urls')),
 
 ]
 

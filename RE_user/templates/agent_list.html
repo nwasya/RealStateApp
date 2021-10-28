@@ -1,0 +1,259 @@
+
+
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+{% load render_partial %}
+{% block content %}
+
+
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h4>Our Agents</h4>
+                        <div class="bt-option">
+                            <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                            <span>Agents</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Agent Section Begin -->
+    <section class="agent-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="agent-search-form">
+                        <form action="#">
+                            <input type="text" placeholder="Find agent">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="as-slider owl-carousel">
+
+                {% for item in agents.values %}
+
+                    <div class="row">
+
+
+                        {% if item.0 %}
+                            <div class="col-lg-4 col-md-6">
+                                <div class="as-item">
+                                    <div class="as-pic">
+                                        <img style="height: 100%;width: 100% ;object-fit:cover"
+                                             src="{% if item.0.image %} {{ item.0.image.url }} {% else %} {% static 'img/Daco_4880035.png' %} {% endif %}"
+                                             alt="">
+                                        <div class="rating-point">
+                                            {{ item.0.rate }}
+                                        </div>
+                                    </div>
+                                    <div class="as-text">
+                                        <div class="at-title">
+                                            <h6>{{ item.0.full_name }}</h6>
+                                            <div class="rating-star">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li>Property <span>215</span></li>
+                                            <li>ایمیل <span>{{ item.0.email }}</span></li>
+                                            <li>شماره تماس <span>{{ item.0.phone }}</span></li>
+                                        </ul>
+                                        <a href="{% url 'agent-profile' %}" class="primary-btn">مشاهده پروفایل</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+
+
+                        {% if item.1 %}
+                            <div class="col-lg-4 col-md-6">
+                                <div class="as-item">
+                                    <div class="as-pic">
+                                        <img style="height: 100%;width: 100% ;object-fit:cover"
+                                             src="{% if item.1.image %} {{ item.1.image.url }} {% else %} {% static 'img/Daco_4880035.png' %} {% endif %}"
+                                             alt="">
+                                        <div class="rating-point">
+                                            {{ item.1.rate }}
+                                        </div>
+                                    </div>
+                                    <div class="as-text">
+                                        <div class="at-title">
+                                            <h6>{{ item.1.full_name }}</h6>
+                                            <div class="rating-star">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li>تعداد ملک ها <span>215</span></li>
+                                            <li>ایمیل <span>{{ item.1.email }}</span></li>
+                                            <li>شماره تماس <span>{{ item.1.phone }}</span></li>
+                                        </ul>
+                                        <a href="{% url 'agent-profile' %}" class="primary-btn">مشاهده پروفایل</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% if item.2 %}
+                            <div class="col-lg-4 col-md-6">
+                                <div class="as-item">
+                                    <div class="as-pic">
+                                        <img style="height: 100%;width: 100% ;object-fit:cover"
+                                             src="{% if item.2.image %} {{ item.2.image.url }} {% else %} {% static 'img/Daco_4880035.png' %} {% endif %}"
+                                             alt="">
+                                        <div class="rating-point">
+                                            {{ item.2.rate }}
+                                        </div>
+                                    </div>
+                                    <div class="as-text">
+                                        <div class="at-title">
+                                            <h6>{{ item.2.full_name }}</h6>
+                                            <div class="rating-star">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li>Property <span>215</span></li>
+                                            <li>ایمیل <span>{{ item.2.email }}</span></li>
+                                            <li>شماره تماس <span>{{ item.2.phone }}</span></li>
+                                        </ul>
+                                        <a href="{% url 'agent-profile' %}" class="primary-btn">مشاهده پروفایل</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% if item.3 %}
+                            <div class="col-lg-4 col-md-6">
+                                <div class="as-item">
+                                    <div class="as-pic">
+                                        <img style="height: 100%;width: 100% ;object-fit:cover"
+                                             src="{% if item.3.image %} {{ item.3.image.url }} {% else %} {% static 'img/Daco_4880035.png' %} {% endif %}"
+                                             alt="">
+                                        <div class="rating-point">
+                                            {{ item.3.rate }}
+                                        </div>
+                                    </div>
+                                    <div class="as-text">
+                                        <div class="at-title">
+                                            <h6>{{ item.3.full_name }}</h6>
+                                            <div class="rating-star">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li>Property <span>215</span></li>
+                                            <li>ایمیل <span>{{ item.3.email }}</span></li>
+                                            <li>شماره تماس <span>{{ item.3.phone }}</span></li>
+                                        </ul>
+                                        <a href="{% url 'agent-profile' %}" class="primary-btn">مشاهده پروفایل</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+
+                        {% if item.4 %}
+                            <div class="col-lg-4 col-md-6">
+                                <div class="as-item">
+                                    <div class="as-pic">
+                                        <img style="height: 100%;width: 100% ;object-fit:cover"
+                                             src="{% if item.4.image %} {{ item.4.image.url }} {% else %} {% static 'img/Daco_4880035.png' %} {% endif %}"
+                                             alt="">
+                                        <div class="rating-point">
+                                            {{ item.4.rate }}
+                                        </div>
+                                    </div>
+                                    <div class="as-text">
+                                        <div class="at-title">
+                                            <h6>{{ item.4.full_name }}</h6>
+                                            <div class="rating-star">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li>Property <span>215</span></li>
+                                            <li>ایمیل <span>{{ item.4.email }}</span></li>
+                                            <li>شماره تماس <span>{{ item.4.phone }}</span></li>
+                                        </ul>
+                                        <a href="{% url 'agent-profile' %}" class="primary-btn">مشاهده پروفایل</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% if item.5 %}
+                            <div class="col-lg-4 col-md-6">
+                                <div class="as-item">
+                                    <div class="as-pic">
+                                        <img style="height: 100%;width: 100% ;object-fit:cover"
+                                             src="{% if item.5.image %} {{ item.5.image.url }} {% else %} {% static 'img/Daco_4880035.png' %} {% endif %}"
+                                             alt="">
+                                        <div class="rating-point">
+                                            {{ item.5.rate }}
+                                        </div>
+                                    </div>
+                                    <div class="as-text">
+                                        <div class="at-title">
+                                            <h6>{{ item.5.full_name }}</h6>
+                                            <div class="rating-star">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li>Property <span>215</span></li>
+                                            <li>ایمیل <span>{{ item.5.email }}</span></li>
+                                            <li>شماره تماس <span>{{ item.5.phone }}</span></li>
+                                        </ul>
+                                        <a href="{% url 'agent-profile' %}" class="primary-btn">مشاهده پروفایل</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+
+                    </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </section>
+    <!-- Agent Section End -->
+
+{% endblock %}

@@ -2714,6 +2714,7 @@ li .richText-btn[data-command=toggleCode] {
   position: relative;
   float: left;
   margin-right: 30px;
+  object-fit:cover
 }
 .profile-agent-content .profile-agent-info .pi-pic img {
   border-radius: 50%;
@@ -4255,6 +4256,7 @@ li .richText-btn[data-command=toggleCode] {
   .profile-agent-content .profile-agent-info .pi-pic {
     float: none;
     margin-right: 0;
+
   }
 
   .profile-agent-content .profile-agent-widget ul li span {

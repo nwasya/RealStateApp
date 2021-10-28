@@ -1,0 +1,102 @@
+
+
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+{% load render_partial %}
+{% block content %}
+
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h4>Profile</h4>
+                        <div class="bt-option">
+                            <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                            <a href="./agents.html">Agents</a>
+                            <span>Profile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Profile Section Begin -->
+    <section class="profile-section spad">
+        <div class="container">
+            <div class="profile-agent-content">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="profile-agent-info">
+                            <div class="pi-pic">
+                                <img style="height: 100px;width: 100px;object-fit:cover"
+                                     src="{% if agent.image %} {{ agent.image.url }} {% else %} {% static 'img/Daco_4880035.png' %} {% endif %}"
+                                     alt="">
+                                <div class="rating-point">
+                                    {{ agent.rate }}
+                                </div>
+                            </div>
+                            <div class="pi-text">
+                                <h5>{{ agent.full_name }}</h5>
+                                <span>{{ agent.city }}</span>
+                                <p> {{ agent.created_date }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="profile-agent-widget">
+                            <ul>
+                                <li>ملک <span>215</span></li>
+                                <li>ایمیل <span>{{ agent.email }}</span></li>
+                                <li>شماره تماس <span>{{ agent.phone }}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="profile-agent-newslatter ">
+                            <h5 class="text-right">با {{ agent.full_name }} در ارتباط باشید </h5>
+                            <a href="{{ agent.email }}" class="btn btn-danger"><i
+                                    class="fa fa-envelope-square fa-2x"></i></a>
+                            <a href="{{ agent.wtsp }}" class="btn btn-success"><i class="fa fa-whatsapp fa-2x "></i></a>
+                            <a href="{{ agent.telegram }}" class="btn btn-primary"><i class="fa fa-telegram fa-2x"></i></a>
+                            <a href="{{ agent.instagram }}" style="background-color: #ff1e87;color: white" class="btn "><i
+                                    class="fa fa-instagram fa-2x"></i></a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Profile Section End -->
+
+    <!-- Property Section Begin -->
+    <section class="property-section profile-page spad">
+        <div class="container">
+            <div class="row">
+
+
+                {% for item in property %}
+
+                    {% include 'shared/shared_component.html' with item=item %}
+                {% endfor %}
+                {#                <div class="col-lg-12">#}
+                {#                    <div class="property-pagination">#}
+                {#                        <a href="#">1</a>#}
+                {#                        <a href="#">2</a>#}
+                {#                        <a href="#">3</a>#}
+                {#                        <a href="#" class="icon"><span class="arrow_right"></span></a>#}
+                {#                    </div>#}
+                {#                </div>#}
+            </div>
+        </div>
+    </section>
+    <!-- Property Section End -->
+
+
+{% endblock %}

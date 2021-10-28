@@ -38,6 +38,7 @@ class SiteUser(models.Model):
     wtsp = models.CharField(max_length=40)
     instagram = models.CharField(max_length=40)
     email = models.EmailField(max_length=40)
+    telegram = models.CharField(max_length=60,default='null')
     city = models.CharField(max_length=40)
     bio = models.TextField()
     birth = models.IntegerField()
