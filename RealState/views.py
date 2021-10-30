@@ -8,11 +8,12 @@ from RE_property.models import Property, Type
 from RE_user.models import SiteUser
 
 categories = ['restaurant',
-                  'house',
-                  'garden',
-                  'villa',
-                  'apartment',
-                  'store']
+              'house',
+              'garden',
+              'villa',
+              'apartment',
+              'store']
+
 
 def home(request, *args, **kwargs):
     info = Info.objects.get()
@@ -22,7 +23,7 @@ def home(request, *args, **kwargs):
                         'site_name': info.site_name,
                         'phone': info.phone,
                         'address': info.address},
-                        'slider': data,
+               'slider': data,
 
                }
 
@@ -30,14 +31,12 @@ def home(request, *args, **kwargs):
     categories = Type.objects.all()
 
     for category in categories:
-
         x = Property.objects.filter(type__title__exact=category.title)
         count = x.count()
         y = x.order_by('-added_date')[:6]
         context[category.value] = y
         context[category.value + '_count'] = count
     x = Property.objects.all().order_by('-added_date')[:6]
-
 
     context['all'] = x
     featured = Property.objects.filter(is_featured=True)
@@ -52,7 +51,6 @@ def home(request, *args, **kwargs):
     #################################
     comments = PropertyComment.objects.all()[:6]
     context['comments'] = comments
-
 
     return render(request, 'index.html', context)
 
@@ -96,3 +94,20 @@ def get_latest_properties_by_category(request):
     }
 
     return render(request, 'index.html', items)
+
+
+def about_us(request):
+    latest_agent = SiteUser.objects.all().order_by('-created_date')[:3] #bosh gedir debug vir
+    latest_comments = PropertyComment.objects.order_by('-date'[:6])
+    context = {
+        'latest_agent': latest_agent,
+        'latest_comment': latest_comments
+    }
+
+    info = Info.objects.get()
+    # info
+    context['info']={'email': info.email,
+                        'site_name': info.site_name,
+                        'phone': info.phone,
+                        'address': info.address}
+    return render(request, 'about_us.html', context)

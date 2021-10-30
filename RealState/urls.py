@@ -18,13 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 
 from RealState import settings
-from RealState.views import home, header, footer
+from RealState.views import home, header, footer, about_us
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
     path('header', header, name="header"),
     path('footer', footer, name="footer"),
+    path('about-us', about_us, name="about_us"),
 
 
 

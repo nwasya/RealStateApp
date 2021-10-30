@@ -5,6 +5,7 @@ from django.db import models
 
 # Create your models here.
 from django.db.models import Q
+from django.utils import timezone
 
 from RE_user.models import SiteUser
 
@@ -136,7 +137,7 @@ class Property(models.Model):
     is_slider = models.BooleanField(default=False)
     is_featured = models.BooleanField(default=False)
     viewed_count = models.IntegerField(null=True)
-    added_date = models.DateTimeField(default=datetime.now())
+    added_date = models.DateTimeField(default=timezone.now())
     objects = PropertyManager()
 
     def __str__(self):

@@ -6,6 +6,7 @@ from django.db import models
 
 # Create your models here.
 from django.db.models import Q
+from django.utils import timezone
 
 
 def get_filename_ext(filepath):
@@ -42,5 +43,5 @@ class SiteUser(models.Model):
     city = models.CharField(max_length=40)
     bio = models.TextField()
     birth = models.IntegerField()
-    created_date = models.DateField(default=datetime.today())
+    created_date = models.DateField(default=timezone.now())
     rate = models.IntegerField()

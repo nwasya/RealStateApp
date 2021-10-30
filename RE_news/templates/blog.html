@@ -32,14 +32,14 @@
                                 <img src="{{ main_news.image.url }}" alt="">
                             </div>
                             <div class="bi-text">
-                                <h4><a href="{{ main_news.image.url }}">{{ main_news.title}}</a></h4>
+                                <h4><a href="/blog-detail/{{ item.id }}">{{ main_news.title}}</a></h4>
                                 <ul>
                                     <li>پست شده توسط: <span>{{ main_news.user.username }} {{ main_news.user.last_name }}</span></li>
                                     <li>{{ item.added_date}}</li>
 {#                                    <li>12 Comment</li>#}
                                 </ul>
                                 <p>{{ main_news.get_description_first_part }}...</p>
-                                <a href="#" class="read-more">بیشتر بخوانید <span class="arrow_right"></span></a>
+                                <a href="/blog-detail/{{ item.id }}" class="read-more">بیشتر بخوانید <span class="arrow_right"></span></a>
                             </div>
                         </div>
                         {% for item in other_news %}

@@ -23,6 +23,11 @@ def get_news(request, *args, **kwargs):
     return render(request, 'blog.html', context=context)
 
 
+
+def get_news_list(request):
+    all_news = News.objects.all().order_by('-added_date')
+    context = {'all_news':all_news}
+    return render(request,'news_list.html',context)
 # class GetNews(ListView):
 #     template_name = 'blog.html'
 #

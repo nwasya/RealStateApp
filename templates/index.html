@@ -5,14 +5,26 @@
 
     <!-- Hero Section Begin -->
     <section class="hero-section">
+
         <div class="container">
             <div class="hs-slider owl-carousel">
 
 
                     <div class="hs-item set-bg" data-setbg="{% static 'img\property\slider\1.jpg' %}">
                         <div class="row">
-                            <div style="width: 100%;height: 250px" class="col-lg-12 ">
+                            <div style="width: 100%;height: 100%" class="col-lg-12 ">
+                              <div class="row">
+                        <div class="col-lg-12">
+                            <div class="hc-inner-text">
+                                <div class="hc-text">
+                                    <h1  style="font-family:Serif ;font-weight: bold;color: white;word-spacing: 0.5px">...رویایت را با ما بساز</h1>
+                                    <p class="text-right"> {{ info.address }}<span class="icon_pin_alt"></span></p>
 
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                             </div>
                         </div>
                     </div>
@@ -29,9 +41,178 @@
 
             </div>
         </div>
+    <div class="scroll-down"> </div>
     </section>
     <!-- Hero Section End -->
 
+    <!-- Search Section Begin -->
+    <section class="search-section spad">
+        <div class="container">
+            <div class="row">
+
+                   <div class="col-lg-5 ">
+                    <div class="change-btn">
+                        <div class="cb-item">
+                            <label for="cb-rent" class="active">
+                                اجاره
+                                <input type="radio" id="cb-rent">
+                            </label>
+                        </div>
+                        <div class="cb-item">
+                            <label for="cb-sale">
+                                رهن
+                                <input type="radio" id="cb-sale">
+                            </label>
+                        </div>
+                        <div class="cb-item">
+                            <label for="cb-sale">
+                               معاوضه
+                                <input type="radio" id="cb-sale">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="section-title">
+                        <h4>ملک مد نظر خود را جستجو کن</h4>
+                    </div>
+                </div>
+
+            </div>
+            <div class="search-form-content">
+
+                <form action="{% url 'property-items' %}" class="filter-form">
+                    <select class="sm-width">
+
+{#                        <option value="">شهر را انتخاب کنید</option>#}
+
+                        <option value="">{{ item }}</option>
+                    </select>
+                    <select class="sm-width">
+                        <option value="">منطقه را انتخاب کنید</option>
+                    </select>
+                    <select class="sm-width">
+                        <option value="">وضعیت ملک را انتخاب کنید</option>
+                    </select>
+                    <select class="sm-width">
+                        <option value="">نوع ملک را انتخاب کنید</option>
+                    </select>
+                    <select class="sm-width">
+                        <option value="">تعداد اتاق را انتخاب کنید</option>
+                    </select>
+                    <select class="sm-width">
+                        <option value="">تعداد پارکینگ را انتخاب کنید</option>
+                    </select>
+                    <div class="room-size-range-wrap sm-width">
+                        <div class="price-text">
+                            <label for="roomsizeRange">مساحت بر حسب متر مربع</label>
+                            <input type="text" id="roomsizeRange" readonly>
+                        </div>
+                        <div id="roomsize-range" class="slider"></div>
+                    </div>
+                    <div class="price-range-wrap sm-width">
+                        <div class="price-text">
+                            <label for="priceRange">قیمت مد نظر</label>
+                            <input type="text" id="priceRange" readonly>
+                        </div>
+                        <div id="price-range" class="slider"></div>
+                    </div>
+                    <button type="button" class="search-btn sm-width">!پیدا کن</button>
+                </form>
+            </div>
+            <div class="more-option">
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-heading active">
+                            <a data-toggle="collapse" data-target="#collapseOne">
+                                امکانات بیشتر برای جستجو
+                            </a>
+                        </div>
+                        <div id="collapseOne" class="collapse" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="mo-list">
+                                    <div class="ml-column">
+                                        <label for="cooling">کولر
+                                            <input name="cooling" value="cooling" {% if 'cooling' in features %}checked{% endif %} type="checkbox" id="cooling">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                        <label for="heater">بخاری
+                                            <input name="heater" value="heater" {% if 'heater' in features %}checked{% endif %} type="checkbox" id="heater">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                        <label for="refrigerator">یخچال
+                                            <input name="refrigerator" value="refrigerator" {% if 'refrigerator' in features %}checked{% endif %} type="checkbox"
+                                                   id="refrigerator">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                        <label for="washer">ظرف شویی
+                                            <input name="washer" value="washer" {% if 'washer' in features %}checked{% endif %} type="checkbox" id="washer">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                    </div>
+                                    <div class="ml-column">
+                                        <label for="barbeque">منقل
+                                            <input name="barbeque" value="barbeque" {% if 'barbeque' in features %}checked{% endif %} type="checkbox" id="barbeque">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                        <label for="lawn">حیاط
+                                            <input name="lawn" value="lawn" {% if 'lawn' in features %}checked{% endif %} type="checkbox" id="lawn">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                        <label for="sauna">سونا
+                                            <input name="sauna" value="sauna" {% if 'sauna' in features %}checked{% endif %} type="checkbox" id="sauna">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                        <label for="wifi">وای فای
+                                            <input name="wifi" value="wifi" {% if 'wifi' in features %}checked{% endif %} type="checkbox" id="wifi">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                    </div>
+                                    <div class="ml-column">
+                                         <label for="cabinet">کابینت
+                                            <input name="cabinet" value="cabinet" {% if 'cabinet' in features %}checked{% endif %} type="checkbox" id="cabinet">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                        <label for="microwave">مایکروویو
+                                            <input name="microwave" value="microwave" {% if 'microwave' in features %}checked{% endif %} type="checkbox" id="microwave">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                        <label for="pool">استخر
+                                            <input name="pool" value="pool" {% if 'pool' in features %}checked{% endif %} type="checkbox" id="pool">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                        <label for="window">پرده
+                                            <input name="window" value="window" {% if 'window' in features %}checked{% endif %} type="checkbox" id="window">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                    </div>
+                                    <div class="ml-column last-column">
+                                        <label for="gym">سالن ورزشی
+                                            <input name="gym" value="gym" {% if 'gym' in features %}checked{% endif %} type="checkbox" id="gym">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                        <label for="phone">تلفن
+                                            <input name="phone" value="phone" {% if 'phone' in features %}checked{% endif %} type="checkbox" id="phone">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                        <label for="antenna">آنتن
+                                            <input name="antenna" value="antenna" {% if 'antenna' in features %}checked{% endif %} type="checkbox" id="antenna">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                        <label for="villa">ویلا
+                                            <input name="villa" value="villa" {% if 'villa' in features %}checked{% endif %} type="checkbox" id="villa">
+                                            <span class="checkbox"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Search Section End -->
 
 
     <!-- Property Section Begin -->
@@ -359,7 +540,6 @@
 {#        </div>#}
 {#    </div>#}
     <!-- Logo Carousel End -->
-
     <!-- Contact Section Begin -->
     <section class="contact-section">
         <div class="container">
@@ -407,6 +587,7 @@
         </div>
     </section>
     <!-- Contact Section End -->
+
 
     <!-- Footer Section Begin -->
 

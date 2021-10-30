@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+from django.utils import timezone
+
 from RE_property.models import upload_image_path
 
 
@@ -13,7 +15,7 @@ class News(models.Model):
     description1 = models.TextField()
     description2 = models.TextField()
 
-    added_date = models.DateTimeField(default=datetime.now())
+    added_date = models.DateTimeField(default=timezone.now())
     image = models.ImageField(upload_to=upload_image_path, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     active = models.BooleanField(default=True)

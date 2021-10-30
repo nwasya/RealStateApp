@@ -9,6 +9,9 @@ from RE_user.models import SiteUser
 
 
 def search_for_property(request, *args, **kwargs):
+
+    all = Property.objects.all()
+
     if request.method == 'POST':
         price = request.POST.get('price')
         size = request.POST.get('size')
@@ -27,7 +30,8 @@ def search_for_property(request, *args, **kwargs):
 
         final_items = Property.objects.search_property(filters)
         context = {
-            'items': final_items
+            'items': final_items,
+            'all':all
         }
 
     return render(request, 'property_items.html', context=context)
@@ -282,15 +286,6 @@ class RecentProperty(ListView):
     paginate_by = 9
     def get_queryset(self):
         return Property.objects.all().order_by('-added_date')
-
-
-
-
-
-
-
-
-
 
 
 

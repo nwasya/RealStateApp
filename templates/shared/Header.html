@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div class="canvas-open">
+            <div class="canvas-open mr-3 ">
                 <span class="icon_menu"></span>
             </div>
         </div>
@@ -83,9 +83,9 @@
                             <li><a href="{% url 'logout' %}">خروج</a></li>
                             {% endif %}
                             <li><a href="/">ارتباط با ما</a></li>
-                            <li><a href="/">اخبار</a></li>
-                            <li><a href="/">درباره ما</a></li>
-                            <li><a href="/">مشاورین فروش</a></li>
+                            <li><a href="{% url 'get_news_list' %}">اخبار</a></li>
+                            <li><a href="{% url 'about_us' %}">درباره ما</a></li>
+                            <li><a href="{% url 'agent-list' %}">مشاورین فروش</a></li>
                             <li><a href="{% url 'property-items-all' %}">ملک ها</a>
                                 <ul class="dropdown">
                                     <li><a class="text-left" href="{% url 'property-items-all' %}">تمامی ملک ها</a></li>
