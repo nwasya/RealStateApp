@@ -10,81 +10,81 @@
             <div class="hs-slider owl-carousel">
 
 
-                    <div class="hs-item set-bg" data-setbg="{% static 'img\property\slider\1.jpg' %}">
-                        <div class="row">
-                            <div style="width: 100%;height: 100%" class="col-lg-12 ">
-                              <div class="row">
-                        <div class="col-lg-12">
-                            <div class="hc-inner-text">
-                                <div class="hc-text">
-                                    <h1  style="font-family:Serif ;font-weight: bold;color: white;word-spacing: 0.5px">...رویایت را با ما بساز</h1>
-                                    <p class="text-right"> {{ info.address }}<span class="icon_pin_alt"></span></p>
+                <div class="hs-item set-bg" data-setbg="{% static 'img\property\slider\1.jpg' %}">
+                    <div class="row">
+                        <div style="width: 100%;height: 250px" class="col-lg-12 ">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="hc-inner-text">
+                                        <div class="hc-text">
+                                            <h1 style="font-family:Serif ;font-weight: bold;color: white;word-spacing: 0.5px">
+                                                ...رویایت را با ما بساز</h1>
+                                            <p class="text-right"> {{ info.address }}<span class="icon_pin_alt"></span>
+                                            </p>
 
+                                        </div>
+
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
 
                 <div class="hs-item set-bg" data-setbg="{% static 'img\property\slider\2.jpg' %}">
-                        <div class="row">
-                            <div style="width: 100%;height: 250px" class="col-lg-12">
+                    <div class="row">
+                        <div style="width: 100%;height: 250px" class="col-lg-12">
 
-                            </div>
                         </div>
                     </div>
-
+                </div>
 
 
             </div>
         </div>
-    <div class="scroll-down"> </div>
+        <div class="scroll-down" style="z-index: 3;"></div>
     </section>
     <!-- Hero Section End -->
 
     <!-- Search Section Begin -->
     <section class="search-section spad">
         <div class="container">
-            <div class="row">
 
-                   <div class="col-lg-5 ">
-                    <div class="change-btn">
-                        <div class="cb-item">
-                            <label for="cb-rent" class="active">
-                                اجاره
-                                <input type="radio" id="cb-rent">
-                            </label>
-                        </div>
-                        <div class="cb-item">
-                            <label for="cb-sale">
-                                رهن
-                                <input type="radio" id="cb-sale">
-                            </label>
-                        </div>
-                        <div class="cb-item">
-                            <label for="cb-sale">
-                               معاوضه
-                                <input type="radio" id="cb-sale">
-                            </label>
-                        </div>
-                    </div>
+            <div class="">
+                <div class=" section-title">
+                    <h4>ملک مد نظر خود را جستجو کن</h4>
                 </div>
-                <div class="col-lg-7">
-                    <div class="section-title">
-                        <h4>ملک مد نظر خود را جستجو کن</h4>
-                    </div>
-                </div>
-
             </div>
+            <div class="pb-3">
+                <div class="change-btn pb-3">
+                    <div class="cb-item">
+                        <label for="cb-rent" class="active">
+                            اجاره
+                            <input type="radio" id="cb-rent">
+                        </label>
+                    </div>
+                    <div class="cb-item">
+                        <label for="cb-sale">
+                            رهن
+                            <input type="radio" id="cb-sale">
+                        </label>
+                    </div>
+                    <div class="cb-item">
+                        <label for="cb-sale">
+                            معاوضه
+                            <input type="radio" id="cb-sale">
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="search-form-content">
 
                 <form action="{% url 'property-items' %}" class="filter-form">
                     <select class="sm-width">
 
-{#                        <option value="">شهر را انتخاب کنید</option>#}
+                        {#                        <option value="">شهر را انتخاب کنید</option>#}
 
                         <option value="">{{ item }}</option>
                     </select>
@@ -133,74 +133,104 @@
                                 <div class="mo-list">
                                     <div class="ml-column">
                                         <label for="cooling">کولر
-                                            <input name="cooling" value="cooling" {% if 'cooling' in features %}checked{% endif %} type="checkbox" id="cooling">
+                                            <input name="cooling" value="cooling"
+                                                   {% if 'cooling' in features %}checked{% endif %} type="checkbox"
+                                                   id="cooling">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="heater">بخاری
-                                            <input name="heater" value="heater" {% if 'heater' in features %}checked{% endif %} type="checkbox" id="heater">
+                                            <input name="heater" value="heater"
+                                                   {% if 'heater' in features %}checked{% endif %} type="checkbox"
+                                                   id="heater">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="refrigerator">یخچال
-                                            <input name="refrigerator" value="refrigerator" {% if 'refrigerator' in features %}checked{% endif %} type="checkbox"
+                                            <input name="refrigerator" value="refrigerator"
+                                                   {% if 'refrigerator' in features %}checked{% endif %} type="checkbox"
                                                    id="refrigerator">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="washer">ظرف شویی
-                                            <input name="washer" value="washer" {% if 'washer' in features %}checked{% endif %} type="checkbox" id="washer">
+                                            <input name="washer" value="washer"
+                                                   {% if 'washer' in features %}checked{% endif %} type="checkbox"
+                                                   id="washer">
                                             <span class="checkbox"></span>
                                         </label>
                                     </div>
                                     <div class="ml-column">
                                         <label for="barbeque">منقل
-                                            <input name="barbeque" value="barbeque" {% if 'barbeque' in features %}checked{% endif %} type="checkbox" id="barbeque">
+                                            <input name="barbeque" value="barbeque"
+                                                   {% if 'barbeque' in features %}checked{% endif %} type="checkbox"
+                                                   id="barbeque">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="lawn">حیاط
-                                            <input name="lawn" value="lawn" {% if 'lawn' in features %}checked{% endif %} type="checkbox" id="lawn">
+                                            <input name="lawn" value="lawn"
+                                                   {% if 'lawn' in features %}checked{% endif %} type="checkbox"
+                                                   id="lawn">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="sauna">سونا
-                                            <input name="sauna" value="sauna" {% if 'sauna' in features %}checked{% endif %} type="checkbox" id="sauna">
+                                            <input name="sauna" value="sauna"
+                                                   {% if 'sauna' in features %}checked{% endif %} type="checkbox"
+                                                   id="sauna">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="wifi">وای فای
-                                            <input name="wifi" value="wifi" {% if 'wifi' in features %}checked{% endif %} type="checkbox" id="wifi">
+                                            <input name="wifi" value="wifi"
+                                                   {% if 'wifi' in features %}checked{% endif %} type="checkbox"
+                                                   id="wifi">
                                             <span class="checkbox"></span>
                                         </label>
                                     </div>
                                     <div class="ml-column">
-                                         <label for="cabinet">کابینت
-                                            <input name="cabinet" value="cabinet" {% if 'cabinet' in features %}checked{% endif %} type="checkbox" id="cabinet">
+                                        <label for="cabinet">کابینت
+                                            <input name="cabinet" value="cabinet"
+                                                   {% if 'cabinet' in features %}checked{% endif %} type="checkbox"
+                                                   id="cabinet">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="microwave">مایکروویو
-                                            <input name="microwave" value="microwave" {% if 'microwave' in features %}checked{% endif %} type="checkbox" id="microwave">
+                                            <input name="microwave" value="microwave"
+                                                   {% if 'microwave' in features %}checked{% endif %} type="checkbox"
+                                                   id="microwave">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="pool">استخر
-                                            <input name="pool" value="pool" {% if 'pool' in features %}checked{% endif %} type="checkbox" id="pool">
+                                            <input name="pool" value="pool"
+                                                   {% if 'pool' in features %}checked{% endif %} type="checkbox"
+                                                   id="pool">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="window">پرده
-                                            <input name="window" value="window" {% if 'window' in features %}checked{% endif %} type="checkbox" id="window">
+                                            <input name="window" value="window"
+                                                   {% if 'window' in features %}checked{% endif %} type="checkbox"
+                                                   id="window">
                                             <span class="checkbox"></span>
                                         </label>
                                     </div>
                                     <div class="ml-column last-column">
                                         <label for="gym">سالن ورزشی
-                                            <input name="gym" value="gym" {% if 'gym' in features %}checked{% endif %} type="checkbox" id="gym">
+                                            <input name="gym" value="gym" {% if 'gym' in features %}checked{% endif %}
+                                                   type="checkbox" id="gym">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="phone">تلفن
-                                            <input name="phone" value="phone" {% if 'phone' in features %}checked{% endif %} type="checkbox" id="phone">
+                                            <input name="phone" value="phone"
+                                                   {% if 'phone' in features %}checked{% endif %} type="checkbox"
+                                                   id="phone">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="antenna">آنتن
-                                            <input name="antenna" value="antenna" {% if 'antenna' in features %}checked{% endif %} type="checkbox" id="antenna">
+                                            <input name="antenna" value="antenna"
+                                                   {% if 'antenna' in features %}checked{% endif %} type="checkbox"
+                                                   id="antenna">
                                             <span class="checkbox"></span>
                                         </label>
                                         <label for="villa">ویلا
-                                            <input name="villa" value="villa" {% if 'villa' in features %}checked{% endif %} type="checkbox" id="villa">
+                                            <input name="villa" value="villa"
+                                                   {% if 'villa' in features %}checked{% endif %} type="checkbox"
+                                                   id="villa">
                                             <span class="checkbox"></span>
                                         </label>
                                     </div>
@@ -218,27 +248,34 @@
     <!-- Property Section Begin -->
     <section class="property-section latest-property-section spad">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-7 col-md-8">
-                    <div class="property-controls">
-                        <ul>
-                            <li data-filter="all">همه</li>
-                            <li data-filter=".house">خانه</li>
-                            <li data-filter=".apart">آپارتمان</li>
-                            <li data-filter=".villa">ویلا</li>
-                            <li data-filter=".garden">باغ</li>
-                            <li data-filter=".store">مغازه</li>
-                            <li data-filter=".restaurant">رستوران</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-md-4 text-sm-center ">
-                    <div class="section-title" style="text-align: right">
+            <div class="text-sm-center ">
+                    <div class="section-title text-right" style="text-align: right">
                         <h4 style="font-family: 'yekan'">ملک های اخیر</h4>
                     </div>
                 </div>
+                <div class="">
+                    <div class="property-controls pb-3 text-right">
+                        <ul>
 
-            </div>
+
+                            <li data-filter=".store">مغازه</li>
+                            <li data-filter=".restaurant">رستوران</li>
+                            <li data-filter=".villa">ویلا</li>
+                            <li data-filter=".garden">باغ</li>
+                            <li data-filter=".apart">آپارتمان</li>
+
+                            <li data-filter=".house">خانه</li>
+
+                            <li data-filter="all">همه</li>
+
+
+
+                        </ul>
+                    </div>
+                </div>
+
+
+
             <div class="row property-filter">
 
 
@@ -340,7 +377,7 @@
     <section class="feature-property-section spad">
         <div class="container">
             <div class="row">
-            <div class="col-lg-8 p-0">
+                <div class="col-lg-8 p-0">
                     <div class="fp-slider owl-carousel">
                         {% for item in news %}
                             <div class="fp-item set-bg" data-setbg="{{ item.image.url }}">
@@ -359,11 +396,13 @@
                         </div>
                         <ul>
                             {% for item in news %}
-                            <a style="color: white;background-color: inherit;text-align: right" href="/all-news/ {{ item.id }}">{{ item.title }}</a>
-{#                                <hr style="background-color: white">#}
-                         {% endfor %}
+                                <a style="color: white;background-color: inherit;text-align: right"
+                                   href="/all-news/ {{ item.id }}">{{ item.title }}</a>
+                                {#                                <hr style="background-color: white">#}
+                            {% endfor %}
                         </ul>
-                        <a style="background-color: inherit;color: white;border-style: solid;border-color: white;border-radius: 4rem" href="/all-news/all">مشاهده تمامی اخبار</a>
+                        <a style="background-color: inherit;color: white;border-style: solid;border-color: white;border-radius: 4rem"
+                           href="/all-news/all">مشاهده تمامی اخبار</a>
                     </div>
                 </div>
 
@@ -375,40 +414,40 @@
     <!-- Team Section Begin -->
     <section class="team-section spad">
         <div class="container">
-            <div class="row">
+
                 <div class="col-lg-4 col-md-4">
                     <div class="team-btn">
                         <a href="#" class="" style="font-family: yekan"><i class="fa fa-user"></i> مشاهده تمامی مشاورین</a>
                     </div>
                 </div>
-                <div class="col-lg-8 col-md-8">
+                <div class="text-right">
                     <div class="section-title">
-                        <h4>مشاورین املاک رستم زاده</h4>
+                        <h4>مشاورین ما</h4>
                     </div>
                 </div>
 
-            </div>
-            <div class="row">
- {% for item in agents %}
-                <div class="col-md-4">
 
-                    <div class="ts-item">
-                        <div class="ts-text">
-                            <img src="{% if item.image %} {{ item.image.url }} {% else %} {% static 'img/Daco_4880035.png' %} {% endif %}" alt="">
-                            <h5>{{ item.full_name}}</h5>
-                            <span>{{ item.phone }}</span>
-{#                            <p>Ipsum dolor amet, consectetur adipiscing elit, eiusmod tempor incididunt lorem.</p>#}
-                            <div class="ts-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-envelope-o"></i></a>
+            <div class="row">
+                {% for item in agents %}
+                    <div class="col-md-4">
+
+                        <div class="ts-item">
+                            <div class="ts-text">
+                                <img src="{% if item.image %} {{ item.image.url }} {% else %} {% static 'img/Daco_4880035.png' %} {% endif %}"
+                                     alt="">
+                                <h5>{{ item.full_name }}</h5>
+                                <span>{{ item.phone }}</span>
+                                {#                            <p>Ipsum dolor amet, consectetur adipiscing elit, eiusmod tempor incididunt lorem.</p>#}
+                                <div class="ts-social">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-envelope-o"></i></a>
+                                </div>
                             </div>
                         </div>
+
                     </div>
-
-                </div>
-   {% endfor %}
-
+                {% endfor %}
 
 
             </div>
@@ -452,102 +491,106 @@
         </div>
     </section>
     <!-- Categories Section End -->
-{% if comments %}
+    {% if comments %}
 
 
-    <!-- Testimonial Section Begin -->
-    <section class="testimonial-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h4>نظرات اخیر کاربران املاک رستم زاده</h4>
-                    </div>
-                </div>
-                <div class="row testimonial-slider owl-carousel">
-
-                    {% for item in comments %}
-                <div class="col-lg-6">
-                    <div class="testimonial-item">
-                        <div class="ti-text">
-                            <p>Lorem ipsum dolor amet, consectetur adipiscing elit, seiusmod tempor incididunt ut labore
-                                magna aliqua. Quis ipsum suspendisse ultrices gravida accumsan lacus vel facilisis.</p>
+        <!-- Testimonial Section Begin -->
+        <section class="testimonial-section spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h4>نظرات اخیر کاربران املاک رستم زاده</h4>
                         </div>
-                        <div class="ti-author">
-                            <div class="ta-pic">
-                                <img src="{% static 'img/testimonial-author/ta-1.jpg' %}" alt="">
-                            </div>
-                            <div class="ta-text">
-                                <h5>Arise Naieh</h5>
-                                <span>Designer</span>
-                                <div class="ta-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                    </div>
+                    <div class="row testimonial-slider owl-carousel">
+
+                        {% for item in comments %}
+                            <div class="col-lg-6">
+                                <div class="testimonial-item">
+                                    <div class="ti-text">
+                                        <p>Lorem ipsum dolor amet, consectetur adipiscing elit, seiusmod tempor
+                                            incididunt ut labore
+                                            magna aliqua. Quis ipsum suspendisse ultrices gravida accumsan lacus vel
+                                            facilisis.</p>
+                                    </div>
+                                    <div class="ti-author">
+                                        <div class="ta-pic">
+                                            <img src="{% static 'img/testimonial-author/ta-1.jpg' %}" alt="">
+                                        </div>
+                                        <div class="ta-text">
+                                            <h5>Arise Naieh</h5>
+                                            <span>Designer</span>
+                                            <div class="ta-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
+                        {% endfor %}
+
                     </div>
                 </div>
 
-                    {% endfor %}
-
             </div>
-            </div>
-
-        </div>
-    </section>
-    <!-- Testimonial Section End -->
+        </section>
+        <!-- Testimonial Section End -->
 
     {% endif %}
     <!-- Logo Carousel Begin -->
-{#    <div class="logo-carousel">#}
-{#        <div class="container">#}
-{#            <div class="lc-slider owl-carousel">#}
-{#                <a href="#" class="lc-item">#}
-{#                    <div class="lc-item-inner">#}
-{#                        <img src="{% static 'img/logo-carousel/lc-1.png' %}" alt="">#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="#" class="lc-item">#}
-{#                    <div class="lc-item-inner">#}
-{#                        <img src="{% static 'img/logo-carousel/lc-2.png' %}" alt="">#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="#" class="lc-item">#}
-{#                    <div class="lc-item-inner">#}
-{#                        <img src="{% static 'img/logo-carousel/lc-3.png' %}" alt="">#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="#" class="lc-item">#}
-{#                    <div class="lc-item-inner">#}
-{#                        <img src="{% static 'img/logo-carousel/lc-4.png' %}" alt="">#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="#" class="lc-item">#}
-{#                    <div class="lc-item-inner">#}
-{#                        <img src="{% static 'img/logo-carousel/lc-5.png' %}" alt="">#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="#" class="lc-item">#}
-{#                    <div class="lc-item-inner">#}
-{#                        <img src="{% static 'img/logo-carousel/lc-6.png' %}" alt="">#}
-{#                    </div>#}
-{#                </a>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
+    {#    <div class="logo-carousel">#}
+    {#        <div class="container">#}
+    {#            <div class="lc-slider owl-carousel">#}
+    {#                <a href="#" class="lc-item">#}
+    {#                    <div class="lc-item-inner">#}
+    {#                        <img src="{% static 'img/logo-carousel/lc-1.png' %}" alt="">#}
+    {#                    </div>#}
+    {#                </a>#}
+    {#                <a href="#" class="lc-item">#}
+    {#                    <div class="lc-item-inner">#}
+    {#                        <img src="{% static 'img/logo-carousel/lc-2.png' %}" alt="">#}
+    {#                    </div>#}
+    {#                </a>#}
+    {#                <a href="#" class="lc-item">#}
+    {#                    <div class="lc-item-inner">#}
+    {#                        <img src="{% static 'img/logo-carousel/lc-3.png' %}" alt="">#}
+    {#                    </div>#}
+    {#                </a>#}
+    {#                <a href="#" class="lc-item">#}
+    {#                    <div class="lc-item-inner">#}
+    {#                        <img src="{% static 'img/logo-carousel/lc-4.png' %}" alt="">#}
+    {#                    </div>#}
+    {#                </a>#}
+    {#                <a href="#" class="lc-item">#}
+    {#                    <div class="lc-item-inner">#}
+    {#                        <img src="{% static 'img/logo-carousel/lc-5.png' %}" alt="">#}
+    {#                    </div>#}
+    {#                </a>#}
+    {#                <a href="#" class="lc-item">#}
+    {#                    <div class="lc-item-inner">#}
+    {#                        <img src="{% static 'img/logo-carousel/lc-6.png' %}" alt="">#}
+    {#                    </div>#}
+    {#                </a>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
     <!-- Logo Carousel End -->
     <!-- Contact Section Begin -->
     <section class="contact-section">
+
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="contact-info">
                         <div class="ci-item">
-                            <div class="ci-icon">
+                            <div class="ci-icon te">
                                 <i class="fa fa-map-marker"></i>
                             </div>
                             <div class="ci-text">

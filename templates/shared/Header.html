@@ -10,8 +10,8 @@
 </div>
 
 <!-- Offcanvas Menu Wrapper Begin -->
-<div class="offcanvas-menu-overlay"></div>
-<div class="offcanvas-menu-wrapper">
+<div class="offcanvas-menu-overlay" style="z-index: 10;"></div>
+<div class="offcanvas-menu-wrapper" >
     <div class="canvas-close">
         <span class="icon_close"></span>
     </div>
@@ -25,8 +25,11 @@
         <ul>
             <li><i class="icon_mail_alt"></i>{{email}}</li>
             <li><i class="fa fa-mobile-phone"></i> <span>{{ phone }}</span></li>
+
         </ul>
-        <a href="#" class="hw-btn">Submit property</a>
+       {% if request.user.is_authenticated %}
+                          <a href="add-property/save" class="hw-btn">ثبت ملک</a>
+                        {% endif %}
     </div>
     <div class="om-social">
         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -55,7 +58,10 @@
                             <li><i class="icon_mail_alt"></i> {{ email}}</li>
                             <li><i class="fa fa-mobile-phone"></i> <span>{{ phone }}</span></li>
                         </ul>
-                        <a href="add-property/save" class="hw-btn">ثبت ملک</a>
+                        {% if request.user.is_authenticated %}
+                          <a href="add-property/save" class="hw-btn">ثبت ملک</a>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
