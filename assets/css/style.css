@@ -4302,7 +4302,7 @@ li .richText-btn[data-command=toggleCode] {
     float: none;
     display: block;
     text-align: right;
-    margin-top: 10px;
+
   }
 
   .blog-details-content .bc-widget .comment-option .co-item.reply-item {
@@ -4525,3 +4525,75 @@ li .richText-btn[data-command=toggleCode] {
       opacity: 1;
       visibility: visible;
     }
+
+.breadcrumb.wizard {
+    padding: 1px;
+  background: #D4D4D4;
+  list-style: none;
+  overflow: hidden;
+    margin-top: 20px;
+  font-size: 10px;
+}
+.breadcrumb.wizard>li+li:before {
+  padding: 0;
+}
+.breadcrumb.wizard li {
+  float: right;
+}
+.breadcrumb.wizard li.active a {
+  background: brown;                   /* fallback color */
+  background: #ffc107 ;
+}
+.breadcrumb.wizard li.completed a {
+  background: brown;                   /* fallback color */
+  background: hsla(153, 57%, 51%, 1);
+}
+.breadcrumb.wizard li.active a:after {
+  border-right: 30px solid #ffc107 ;
+}
+.breadcrumb.wizard li.completed a:after {
+  border-right: 30px solid hsla(153, 57%, 51%, 1);
+}
+
+.breadcrumb.wizard li a {
+  color: white;
+  text-decoration: none;
+  padding: 15px 30px 10px 30px;
+  position: relative;
+  display: block;
+  float: right;
+}
+.breadcrumb.wizard li a:after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+  border-bottom: 50px solid transparent;
+  border-right: 30px solid hsla(0, 0%, 83%, 1);
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  right: 100%;
+  z-index: 2;
+}
+.breadcrumb.wizard li a:before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+  border-bottom: 50px solid transparent;
+  border-right: 35px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  margin-right: 1px;
+  right: 100%;
+  z-index: 1;
+}
+.breadcrumb.wizard li:first-child a {
+  padding-right: 15px;
+}
+.breadcrumb.wizard li a:hover { background: #ffc107  ; }
+.breadcrumb.wizard li a:hover:after { border-right-color: #ffc107   !important; }

@@ -55,7 +55,13 @@
                     <h4>ملک مد نظر خود را جستجو کن</h4>
                 </div>
             </div>
-            <div class="pb-3">
+
+
+
+            <div class="search-form-content">
+
+                <form action="{% url 'property-items' %}" class="filter-form">
+                    <div class="pb-3">
                 <div class="change-btn pb-3">
                     <div class="cb-item">
                         <label for="cb-rent" class="active">
@@ -70,18 +76,13 @@
                         </label>
                     </div>
                     <div class="cb-item">
-                        <label for="cb-sale">
+                        <label for="cb-exchange">
                             معاوضه
-                            <input type="radio" id="cb-sale">
+                            <input type="radio" id="cb-exchange">
                         </label>
                     </div>
                 </div>
             </div>
-
-
-            <div class="search-form-content">
-
-                <form action="{% url 'property-items' %}" class="filter-form">
                     <select class="sm-width">
 
                         {#                        <option value="">شهر را انتخاب کنید</option>#}
@@ -117,7 +118,7 @@
                         </div>
                         <div id="price-range" class="slider"></div>
                     </div>
-                    <button type="button" class="search-btn sm-width">!پیدا کن</button>
+                    <button  type="submit" class="search-btn sm-width">!پیدا کن</button>
                 </form>
             </div>
             <div class="more-option">
@@ -382,7 +383,7 @@
                         {% for item in news %}
                             <div class="fp-item set-bg" data-setbg="{{ item.image.url }}">
                                 <div class="fp-text">
-                                    <h5 class="title">{{ item.title }}</h5>
+                                    <h5 style="background-color: rgba(0, 0, 0, 0.5)" class="title text-right">{{ item.title }}</h5>
 
                                 </div>
                             </div>
@@ -397,7 +398,7 @@
                         <ul>
                             {% for item in news %}
                                 <a style="color: white;background-color: inherit;text-align: right"
-                                   href="/all-news/ {{ item.id }}">{{ item.title }}</a>
+                                   href="/all-news/{{ item.id }}">{{ item.title }}</a>
                                 {#                                <hr style="background-color: white">#}
                             {% endfor %}
                         </ul>

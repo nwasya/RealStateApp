@@ -6,21 +6,21 @@
 
 
     <!-- Blog Hero Section Begin -->
-    <section class="blog-hero-section set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+       <!-- Breadcrumb Section Begin -->
+    <section class="blog-hero-section set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}" style="height: 350px;">
+
+    </section>
+    <!-- Breadcrumb Section End -->
+    <section>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="bh-text">
-                        <h4>{{ new.title }}</h4>
-                        <ul>
-                            <li>پست شده توسط: <span>{{ main_news.user.username }} {{ main_news.user.last_name }}</span>
-                            </li>
-                            <li>{{ item.added_date }}</li>
-                            {#                                    <li>12 Comment</li>#}
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item " aria-current="page">خبر</li>
+                    <li class="breadcrumb-item active"><a href="{% url 'get_news_list' %}">لیست خبر ها</a></li>
+                    <li class="breadcrumb-item active"><a href="/">صفحه اصلی</a></li>
+
+                </ol>
+            </nav>
         </div>
     </section>
     <!-- Blog Hero Section End -->
@@ -30,15 +30,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 m-auto p-0">
+                  <h4 class="text-center pb-3">{{ new.title }}</h4>
                     <div class="blog-details-content">
                         <div class="bc-top">
-                            <p>{{ new.description }}</p>
+                            <p style="font-family: yekan !important;" class="text-right text-justify">{{ new.description }}</p>
                         </div>
                         <div class="bc-pic">
-                            <img class="pb-5" src="{{ new.image.url }}" alt="" style="height: 377px;width: 100%">
+                            <img class="pb-5" src="{{ new.image.url }}" alt="" style="height: 100%;width: 100%">
                         </div>
                         <div class="bc-desc">
-                            <p>{{ new.description1 }}</p>
+                            <p style="font-family: yekan !important;" class="text-right text-justify">{{ new.description1 }}</p>
                         </div>
                         {% if new.quote != None %}
                             <div class="bc-quote">
@@ -46,23 +47,23 @@
                                     <i class="fa fa-quote-left"></i>
                                 </div>
                                 <div class="bq-text">
-                                    <p>{{ new.quote }}</p>
+                                    <p style="font-family: yekan !important;" class="text-right text-justify">{{ new.quote }}</p>
                                 </div>
                             </div>
                         {% endif %}
                         <div class="bc-desc-last">
-                            <p>{{ new.description2 }}</p>
+                            <p style="font-family: yekan !important;" class="text-right text-justify">{{ new.description2 }}</p>
                         </div>
                         <div class="bc-tags">
                             {% for hashtag in new.get_hashtags_list %}
-                                <a href="#">{{ hashtag }}</a>
+                                <a style="font-family: yekan !important;" href="#">{{ hashtag }}</a>
                             {% endfor %}
                         </div>
-                        <div class="bc-related-post">
-                            <a href="/blog-detail/{{ new.find_next_new_id }}" class="next-post">پست بعدی <i
+                        <div class="row bc-related-post">
+                            <a href="/blog-detail/{{ new.find_next_new_id }}" class="next-post col-6">پست بعدی <i
                                     class="fa fa-angle-right"></i></a>
 
-                            <a href="/blog-detail/{{ new.find_previous_new_id }}" class="previous-post"><i
+                            <a href="/blog-detail/{{ new.find_previous_new_id }}" class="previous-post col-6"><i
                                     class="fa fa-angle-left"></i> پست قبلی</a>
                         </div>
                         <div class="bc-widget">

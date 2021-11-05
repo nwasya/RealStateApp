@@ -4,23 +4,24 @@
 {% block content %}
 
 
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <h4>Property Grid</h4>
-                        <div class="bt-option">
-                            <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                            <span>Property</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+    <section class="blog-hero-section set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}" style="height: 350px;">
+
     </section>
     <!-- Breadcrumb Section End -->
+    <section>
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item " aria-current="page">جستجو</li>
+
+                    <li class="breadcrumb-item active"><a href="/">صفحه اصلی</a></li>
+
+                </ol>
+            </nav>
+        </div>
+    </section>
+
 
     <!-- Property Section Begin -->
     <section class="property-section spad">
@@ -43,7 +44,7 @@
                             <div class="pi-text">
                                 <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                                 <div class="pt-price">تومان {{ item.price }}<span>ماهانه</span></div>
-                                <h5><a href="#">{{ item.city}}</a></h5>
+                                <h5><a href="#">{{ item.city }}</a></h5>
                                 <p><span class="icon_pin_alt"></span>{{ item.address }}</p>
                                 <ul>
                                     <li><i class="fa fa-object-group"></i> {{ item.size }}</li>
@@ -55,7 +56,7 @@
                                     <div class="pa-item">
                                         <div class="pa-info">
                                             <img src="{% static 'img/property/posted-by/pb-1.jpg' %}" alt="">
-                                            <h6>{{ item.user.first_name}} {{ item.user.last_name }}</h6>
+                                            <h6>{{ item.user.first_name }} {{ item.user.last_name }}</h6>
                                         </div>
                                         <div class="pa-text">
                                             123-455-688
@@ -65,14 +66,29 @@
                             </div>
                         </div>
                     </div>
+
+                {% empty %}
+                    <div class="alert alert-warning text-center flex-fill" role="alert">
+                        <h4 class="alert-heading pb-3"> <i class="fa fa-frown-o"></i> ..متاسفیم</h4>
+                        <p> ملکی بر طبق جستجو های شما یافت نشد.می توانید دوباره امتحان نماید یا با استفاده از
+                            لینک های زیر ملک مد نظر خود را بیابید</p>
+                        <hr>
+
+                            <a class="text-right" href="{% url 'property-items-all' %}">تمامی ملک ها</a>
+                        <hr>
+                        <a class="text-right" href="{% url 'property-items-most-viewed' %}">پر بازدید ترین ها</a>
+                        <hr>
+                        <a class="text-right" href="{% url 'property-items-latest' %}">آخرین ملک ها</a>
+
+                    </div>
                 {% endfor %}
 
 
-                <div class="col-lg-12">
-                    <div class="loadmore-btn">
-                        <a href="#">Load more</a>
-                    </div>
-                </div>
+                {#                <div class="col-lg-12">#}
+                {#                    <div class="loadmore-btn">#}
+                {#                        <a href="#">Load more</a>#}
+                {#                    </div>#}
+                {#                </div>#}
             </div>
         </div>
     </section>

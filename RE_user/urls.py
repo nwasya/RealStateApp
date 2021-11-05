@@ -6,6 +6,4 @@ urlpatterns = [
     path('agent-list', get_agent_list, name='agent-list'),
     path('agent-profile/<agent_id>', get_agent_profile, name='agent-profile'),
 
-
-
 ]

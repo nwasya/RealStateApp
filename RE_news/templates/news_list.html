@@ -3,20 +3,22 @@
 {% load render_partial %}
 {% block content %}
 
-  <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <!-- Blog Hero Section Begin -->
+       <!-- Breadcrumb Section Begin -->
+    <section class="blog-hero-section set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}" style="height: 350px;">
+
+    </section>
+    <!-- Breadcrumb Section End -->
+    <section>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <h4>Blog</h4>
-                        <div class="bt-option">
-                            <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                            <span>Blog</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item " aria-current="page">لیست خبر ها</li>
+
+                    <li class="breadcrumb-item active"><a href="/">صفحه اصلی</a></li>
+
+                </ol>
+            </nav>
         </div>
     </section>
     <!-- Breadcrumb Section End -->

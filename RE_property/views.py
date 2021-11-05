@@ -11,7 +11,7 @@ from RE_user.models import SiteUser
 def search_for_property(request, *args, **kwargs):
 
     all = Property.objects.all()
-
+    context = {}
     if request.method == 'POST':
         price = request.POST.get('price')
         size = request.POST.get('size')
