@@ -60,61 +60,62 @@
 
             <div class="search-form-content">
 
-                <form action="{% url 'property-items' %}" class="filter-form">
+                <form method="POST" action="{% url 'property-items' %}" class="filter-form">
+                    {% csrf_token %}
                     <div class="pb-3">
                 <div class="change-btn pb-3">
                     <div class="cb-item">
                         <label for="cb-rent" class="active">
                             اجاره
-                            <input type="radio" id="cb-rent">
+                            <input name="rent" value="true" type="radio" id="cb-rent">
                         </label>
                     </div>
                     <div class="cb-item">
                         <label for="cb-sale">
                             رهن
-                            <input type="radio" id="cb-sale">
+                            <input name="sale" value="true" type="radio" id="cb-sale">
                         </label>
                     </div>
                     <div class="cb-item">
                         <label for="cb-exchange">
                             معاوضه
-                            <input type="radio" id="cb-exchange">
+                            <input name="exchange" value="true" type="radio" id="cb-exchange">
                         </label>
                     </div>
                 </div>
             </div>
-                    <select class="sm-width">
+                    <select name="city" class="sm-width">
 
                         {#                        <option value="">شهر را انتخاب کنید</option>#}
 
                         <option value="">{{ item }}</option>
                     </select>
-                    <select class="sm-width">
+                    <select name="area" class="sm-width">
                         <option value="">منطقه را انتخاب کنید</option>
                     </select>
-                    <select class="sm-width">
+                    <select name="status" class="sm-width">
                         <option value="">وضعیت ملک را انتخاب کنید</option>
                     </select>
-                    <select class="sm-width">
+                    <select name="type" class="sm-width">
                         <option value="">نوع ملک را انتخاب کنید</option>
                     </select>
-                    <select class="sm-width">
+                    <select name="bedroom" class="sm-width">
                         <option value="">تعداد اتاق را انتخاب کنید</option>
                     </select>
-                    <select class="sm-width">
+                    <select name="garage" class="sm-width">
                         <option value="">تعداد پارکینگ را انتخاب کنید</option>
                     </select>
                     <div class="room-size-range-wrap sm-width">
                         <div class="price-text">
                             <label for="roomsizeRange">مساحت بر حسب متر مربع</label>
-                            <input type="text" id="roomsizeRange" readonly>
+                            <input name="size" type="text" id="roomsizeRange" readonly>
                         </div>
                         <div id="roomsize-range" class="slider"></div>
                     </div>
                     <div class="price-range-wrap sm-width">
                         <div class="price-text">
                             <label for="priceRange">قیمت مد نظر</label>
-                            <input type="text" id="priceRange" readonly>
+                            <input name="price" type="text" id="priceRange" readonly>
                         </div>
                         <div id="price-range" class="slider"></div>
                     </div>

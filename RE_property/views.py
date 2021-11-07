@@ -9,16 +9,20 @@ from RE_user.models import SiteUser
 
 
 def search_for_property(request, *args, **kwargs):
-
     all = Property.objects.all()
     context = {}
     if request.method == 'POST':
         price = request.POST.get('price')
         size = request.POST.get('size')
+        for item in ['rent', 'sale', 'exchange']:
+            status = request.POST.get(item) if request.POST.get(item) == item else None
+            if status is not None:
+                break
+
         filters = {
             "city": request.POST.get('city'),
             "area": request.POST.get('area'),
-            "status": request.POST.get('status'),
+            "status": request.POST.get('status'), #will change later and use status above
             "house_type": request.POST.get('type'),
             "bedroom": request.POST.get('bedroom'),
             "garage": request.POST.get('garage'),
@@ -26,19 +30,19 @@ def search_for_property(request, *args, **kwargs):
             "size_end": get_range(size)[1],
             "price_start": get_range(price)[0],
             "price_end": get_range(price)[1],
-            "type": "villa"}
+            "type": "villa",
+        }
 
         final_items = Property.objects.search_property(filters)
         context = {
             'items': final_items,
-            'all':all
+            'all': all
         }
 
     return render(request, 'property_items.html', context=context)
 
 
 def get_property_detail(request, *args, **kwargs):
-
     comment_list = PropertyComment.objects.filter(object__id=kwargs['property_id'], confirmed=True).all()
 
     context = {'comments': comment_list}
@@ -158,6 +162,8 @@ def save_property(request, *args, **kwargs):
         garage_area = request.POST['garage_area']
         year = request.POST['year'] if 'year' in request.POST else None
         video_link = request.POST['video_link'] if 'video_link' in request.POST else None
+        video_link2 = request.POST['video_link1'] if 'video_link1' in request.POST else None
+        video_link3 = request.POST['video_link2'] if 'video_link2' in request.POST else None
         if request.POST['hidden_mode'] != ' None ':
             """
             edit mode:we get the pictures from obj itself 
@@ -187,6 +193,8 @@ def save_property(request, *args, **kwargs):
             obj.garage = garage
             obj.short_description = short_description
             obj.videos = video_link
+            obj.videos2 = video_link2
+            obj.videos3 = video_link3
             obj.postal = postal
             obj.country = country
             obj.year = year
@@ -222,6 +230,8 @@ def save_property(request, *args, **kwargs):
                            garage=garage,
                            short_description=short_description,
                            videos=video_link,
+                           videos2=video_link2,
+                           videos3=video_link3,
                            postal=postal,
                            country=country,
                            year=year,
@@ -245,7 +255,6 @@ def save_property(request, *args, **kwargs):
 
         obj.save()
 
-
     return render(request, 'add_property.html', context)
 
 
@@ -259,39 +268,28 @@ def delete_property(request, *args, **kwargs):
     return render(request, 'delete_property.html', context)
 
 
-
 class AllProperty(ListView):
     template_name = 'property_list.html'
     paginate_by = 9
+
     def get_queryset(self):
         return Property.objects.all()
-
-
-
 
 
 class MostViewedProperty(ListView):
     template_name = 'property_list.html'
     paginate_by = 9
+
     def get_queryset(self):
         return Property.objects.all().order_by('viewed_count')
-
-
-
-
 
 
 class RecentProperty(ListView):
     template_name = 'property_list.html'
     paginate_by = 9
+
     def get_queryset(self):
         return Property.objects.all().order_by('-added_date')
-
-
-
-
-
-
 
 
 def get_range(str_range: str) -> list:

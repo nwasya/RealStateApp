@@ -62,10 +62,10 @@ class PropertyManager(models.Manager):
     def search_property(self, filters: dict):
         items = Property.objects.filter(
 
-            Q(city__contains=filters['city']) | Q(area__contains=filters['area']) | Q(
-                status__contains=filters['status']),
-            Q(type__contains=filters['type']) |
-            (Q(size__lte=filters['size_end']) & Q(size__gte=filters['size_start'])) |
+            Q(city__contains=filters['city']) | Q(part__contains=filters['area']) | Q(
+                status__title__contains=filters['status']),
+            Q(type__title__contains=filters['type']) |
+            (Q(area__lte=filters['size_end']) & Q(area__gte=filters['size_start'])) |
             (Q(price__lte=filters['price_end']) & Q(price__gte=filters['price_start']))
 
         )
@@ -126,7 +126,9 @@ class Property(models.Model):
     short_description = models.TextField(max_length=249)
 
     image = models.ImageField(upload_to=upload_image_path, null=True, blank=True)
-    videos = models.CharField(max_length=20)
+    videos = models.TextField(max_length=1000,null=True)
+    videos2 = models.TextField(max_length=1000,null=True)
+    videos3 = models.TextField(max_length=1000,null=True)
     postal = models.CharField(max_length=15)
     country = models.CharField(max_length=15)
     part = models.CharField(max_length=35)

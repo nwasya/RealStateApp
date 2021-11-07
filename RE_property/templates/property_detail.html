@@ -66,13 +66,12 @@
                                     <div class="pt-price">
 
                                         {% if property.status.first.value == 'rent' %}
-                <span> هر ماه  </span>  {{ property.monthly_price }}
-                تومان
-                                    {% else %}
-                                        {{ property.price }}تومان
+                                            <span> هر ماه  </span>  {{ property.monthly_price }}
+                                            تومان
+                                        {% else %}
+                                            {{ property.price }}تومان
 
-                                    {% endif %}
-
+                                        {% endif %}
 
 
                                     </div>
@@ -283,11 +282,27 @@
                         {#                                </div>#}
                         {#                            </div>#}
                         {#                        </div>#}
+
+                       {% if property.videos or property.videos2 or property.videos3 %}
+
+                     <div class="py-4">
+                            <h3 class="text-right pb-3">تور مجازی</h3>
+                            {{ property.videos | safe }}
+                            <br>
+                            <hr>
+                            {{ property.videos2 | safe }}
+                            <br>
+                            <hr>
+                            {{ property.videos3 | safe }}
+
+                        </div>
+                    {% endif %}
                         <div class="pd-widget">
                             <h4 class="text-right">فروشنده</h4>
                             <div class="pd-agent">
                                 <div class="agent-pic">
-                                    <img src="{% if property.image %} {{ property.image.url }} {% else %} {% static 'img/Daco_4880035.png' %}  {% endif %}" alt="">
+                                    <img src="{% if property.image %} {{ property.image.url }} {% else %} {% static 'img/Daco_4880035.png' %}  {% endif %}"
+                                         alt="">
                                 </div>
                                 <div class="agent-text">
                                     <div class="at-title">
@@ -295,7 +310,7 @@
                                         <span>مشاور فروش</span>
                                         <a href="#" class="primary-btn">دیدن پروفایل</a>
                                     </div>
-                                    <p>{{ property.user.bio}}</p>
+                                    <p>{{ property.user.bio }}</p>
                                     <div class="at-option">
                                         <div class="at-number">{{ property.user.phone }}</div>
                                         <div class="at-social">
@@ -341,7 +356,7 @@ background-color: #d6d8db">
                             </div>
                         </div>
                         <div class="bc-widget">
-                            <h5 class="text-right text-sm-center pb-5 ">نظر خود را با ما در میان بگذارید</h5>
+                            <h5 class="text-center pb-5 pt-3">نظر خود را با ما در میان بگذارید</h5>
                             <form action="#" class="leave-comment-form pb-5">
                                 <div class="group-input text-right">
                                     <input class="text-center" name="name" type="text" placeholder="نام و نام خانوادگی">
@@ -357,8 +372,8 @@ background-color: #d6d8db">
                 <div class="col-lg-4">
                     <div class="property-sidebar">
                         <div class="single-sidebar">
-<div class="section-title sidebar-title">
-                              <h6 class="">مشاورین برتر</h6>
+                            <div class="section-title sidebar-title">
+                                <h6 class="">مشاورین برتر</h6>
                             </div>
                             <div class="top-agent">
 
